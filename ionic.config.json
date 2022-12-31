@@ -1,0 +1,7 @@
+{
+  "name": "paktrade-dashboard",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
