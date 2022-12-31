@@ -1,0 +1,53 @@
+<div class="add-item-container">
+  <app-add-images></app-add-images>
+  <ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-select interface="popover" placeholder="What to sell ?">
+              <ion-select-option value="apples">Apples</ion-select-option>
+              <ion-select-option value="oranges">Oranges</ion-select-option>
+              <ion-select-option value="bananas">Bananas</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-select interface="popover" placeholder="Describe more..">
+              <ion-select-option disabled="true" value="">{{"Select Category First"}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-select interface="popover" placeholder="Select Item">
+              <ion-select-option disabled="true" value=""> {{"Select Sub-Category First."}} </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12"  size-md="6">
+          <ion-item>
+            <ion-label>Title</ion-label>
+            <ion-input placeholder="eg: 3 piece suit"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">    <ion-item>
+          <ion-label>Quantity</ion-label>
+          <ion-input type="number" placeholder="000"></ion-input>
+        </ion-item></ion-col>
+        <ion-col size="12">
+          <ion-item>
+          <ion-label>Price x1</ion-label>
+          <ion-input type="number" placeholder="000"></ion-input>
+          <ion-select placeholder="Currency">
+            <ion-select-option value="usd">USD</ion-select-option>
+            <ion-select-option value="omr">OMR</ion-select-option>
+            <ion-select-option value="pkr">PKR</ion-select-option>
+            <ion-select-option value="ued">UED</ion-select-option>
+          </ion-select>
+        </ion-item></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</div>

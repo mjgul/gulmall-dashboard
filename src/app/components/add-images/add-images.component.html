@@ -1,0 +1,38 @@
+<div class="add-image-container">
+<div class="empty-image horizontal-vertical-centered" *ngIf="noImageTaken; else hasImages">
+  <div class="add-image-icon">
+  <ion-icon name="add-outline"></ion-icon>
+</div>
+<div class="add-image-empty-label">
+  <ion-label>Upload Images</ion-label>
+</div>
+</div>
+
+<ng-template #hasImages>
+  <div class="images-container">
+    <ion-grid>
+      <ion-row class="scroll">
+        <ion-col (click)="deleteImage(i)" size="6" *ngFor="let img of imagesArray; let i=index">
+          <div class="img-container">
+            <div class="delete-image-container">
+              <ion-icon name="trash-outline"></ion-icon>
+            </div>
+          <img [src]="img" />
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="empty-image horizontal-vertical-centered">
+          <div class="add-image-icon">
+            <ion-icon name="add-outline"></ion-icon>
+          </div>
+          <div class="add-image-empty-label">
+            <ion-label>Upload Images</ion-label>
+          </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ng-template>
+
+</div>
