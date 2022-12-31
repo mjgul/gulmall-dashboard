@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PopUpManagerService } from '../../services/pop-up-manager.service';
+import { ImageTakerService } from '../../services/image-taker.service';
 @Component({
   selector: 'app-add-images',
   templateUrl: './add-images.component.html',
@@ -9,7 +10,7 @@ export class AddImagesComponent implements OnInit {
   noImageTaken:boolean = false;
   imagesArray:any[] = ["../../../assets/test1.png","../../../assets/test2.png","../../../assets/test3.png"]
   
-  constructor(private popUpManager:PopUpManagerService) { }
+  constructor(private popUpManager:PopUpManagerService, private imageTaker:ImageTakerService) { }
 
   ngOnInit() {}
 
@@ -27,6 +28,12 @@ export class AddImagesComponent implements OnInit {
   // FIND INDEX AND REMOVE IT FROM ARRAY.
   removeImageFromImagesArray(index:number){
     this.imagesArray.splice(index,1);
+  }
+
+  // upload images form gallery as file
+  uploadImages = async() => {
+    let images = await this.imageTaker.getLibraryImages();
+    console.log("Images: ", images)
   }
 
 

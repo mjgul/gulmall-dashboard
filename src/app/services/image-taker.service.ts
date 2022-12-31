@@ -34,7 +34,7 @@
  @Injectable({
    providedIn: 'root',
  })
- export class CamGalService {
+ export class ImageTakerService {
    // MAXIMUM NUMBER OF IMAGES USER CAN SELECT.
    maximumImages: number = 20;
    // IMAGES COUNT FOR ANDROID.
@@ -83,7 +83,9 @@
    };
  
    
-    async readAsFile(photo: Photo[]) {
+ 
+ 
+   async readAsFile(photo: Photo[]) {
      console.log('PHOTOS: ', photo);
      let files: File[] = [];
      // Fetch the photo, read as a blob, then convert to base64 format
