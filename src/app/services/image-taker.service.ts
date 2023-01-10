@@ -18,7 +18,6 @@
  * NSPhotoLibraryAddUsageDescription (Privacy - Photo Library Additions Usage Description)
  * NSPhotoLibraryUsageDescription (Privacy - Photo Library Usage Description)
  */
-
  import { Injectable } from '@angular/core';
  import {
    Camera,
@@ -27,10 +26,12 @@
    ImageOptions,
    GalleryImageOptions,
    GalleryPhoto,
-   Photo
+   Photo,
+   GalleryPhotos
  } from '@capacitor/camera';
  import { FileSystemService } from './file-system.service';
  import { Platform } from '@ionic/angular';
+import { IgalleryImage } from '../interface/IgalleryImages';
  @Injectable({
    providedIn: 'root',
  })
@@ -77,9 +78,9 @@
     * @returns Array of images/blob()
     *
     */
-   getLibraryImages = async () => {
-     const images = await Camera.pickImages(this.galleryOptions);
-     return images.photos;
+   getLibraryImages = async ():Promise<GalleryPhotos> => {
+     const images:GalleryPhotos = await Camera.pickImages(this.galleryOptions);
+     return images;
    };
  
    

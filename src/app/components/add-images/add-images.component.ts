@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { PopUpManagerService } from '../../services/pop-up-manager.service';
 import { ImageTakerService } from '../../services/image-taker.service';
 @Component({
@@ -8,9 +9,9 @@ import { ImageTakerService } from '../../services/image-taker.service';
 })
 export class AddImagesComponent implements OnInit {
   noImageTaken:boolean = false;
-  imagesArray:any[] = ["../../../assets/test1.png","../../../assets/test2.png","../../../assets/test3.png"]
+  imagesArray:any[] = []
   
-  constructor(private popUpManager:PopUpManagerService, private imageTaker:ImageTakerService) { }
+  constructor(private popUpManager:PopUpManagerService, private imageTaker:ImageTakerService,public sanitizer: DomSanitizer) { }
 
   ngOnInit() {}
 
@@ -32,8 +33,10 @@ export class AddImagesComponent implements OnInit {
 
   // upload images form gallery as file
   uploadImages = async() => {
+    // GALLERY PHOTOS WILL BE SAVED IN images VARIABLE.
     let images = await this.imageTaker.getLibraryImages();
-    console.log("Images: ", images)
+    images.photos.forEach((x)=> this.imagesArray.push(this.sanitizer.bypassSecurityTrustUrl(x.webPath)));
+    console.log(images.photos)
   }
 
 
