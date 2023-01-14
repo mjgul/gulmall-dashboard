@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { PopUpManagerService } from '../../services/pop-up-manager.service';
 import { ImageTakerService } from '../../services/image-taker.service';
 @Component({
