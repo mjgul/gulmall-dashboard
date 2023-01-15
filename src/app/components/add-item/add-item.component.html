@@ -5,24 +5,22 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-select interface="popover" placeholder="What to sell ?">
-              <ion-select-option value="apples">Apples</ion-select-option>
-              <ion-select-option value="oranges">Oranges</ion-select-option>
-              <ion-select-option value="bananas">Bananas</ion-select-option>
+            <ion-select interface="popover" placeholder="What to sell ?" (ionChange)="onSelectCategory($event)">
+              <ion-select-option  *ngFor="let category of allCategories |async" [value]="category.id">{{category.name.en}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <ion-col>
           <ion-item>
-            <ion-select interface="popover" placeholder="Describe more..">
-              <ion-select-option disabled="true" value="">{{"Select Category First"}}</ion-select-option>
+            <ion-select interface="popover" placeholder="Describe more.." (ionChange)="onSelectSubCat($event)">
+              <ion-select-option *ngFor="let subCat of allSubCategories | async"  [value]="subCat.id" >{{subCat.name.en}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <ion-col>
           <ion-item>
             <ion-select interface="popover" placeholder="Select Item">
-              <ion-select-option disabled="true" value=""> {{"Select Sub-Category First."}} </ion-select-option>
+              <ion-select-option *ngFor="let childSubCat of childSubCategories | async" [value]="childSubCat.id"> {{ childSubCat.name.en }} </ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
