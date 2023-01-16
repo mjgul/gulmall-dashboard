@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AddItemService {
+  private isGenderBased:boolean = false;
   private allCategories: Observable<Icategory[]> | undefined;
   private allSubCategories: Observable<IsubCategory[]> | undefined;
   private childSubCategories:Observable<IchildSubCat[]> | undefined;

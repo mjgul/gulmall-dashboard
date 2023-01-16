@@ -6,7 +6,7 @@
         <ion-col>
           <ion-item>
             <ion-select interface="popover" placeholder="What to sell ?" (ionChange)="onSelectCategory($event)">
-              <ion-select-option  *ngFor="let category of allCategories |async" [value]="category.id">{{category.name.en}}</ion-select-option>
+              <ion-select-option  *ngFor="let category of allCategories |async" [value]="category">{{category.name.en}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -19,16 +19,16 @@
         </ion-col>
         <ion-col>
           <ion-item>
-            <ion-select interface="popover" placeholder="Select Item">
-              <ion-select-option *ngFor="let childSubCat of childSubCategories | async" [value]="childSubCat.id"> {{ childSubCat.name.en }} </ion-select-option>
+            <ion-select interface="popover" placeholder="Select Item" (ionChange)="onSelectChildSubCat($event)">
+              <ion-select-option *ngFor="let childSubCat of childSubCategories | async" [value]="childSubCat"> {{ childSubCat.name.en }} </ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <!---- SHOW ONLY IF THE CATEGORY HAS GENDER TYPE BINDING-->
         <ion-col>
           <ion-item>
-            <ion-select interface="popover" placeholder="Gender">
-              <ion-select-option disabled="true" value=""> {{"Select Sub-Category First."}} </ion-select-option>
+            <ion-select (ionChange)="onSelectGenderType($event)" interface="popover" [placeholder]=" isGenderBased ? 'Gender' : 'Weight' ">
+              <ion-select-option *ngFor="let type of sizeType | async"  [value]="type"> {{type.name.en}} </ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -37,7 +37,7 @@
             <ion-col size="12"  size-md="6" sizeSm="6">
               <ion-item>
                 <ion-select interface="popover" placeholder="Size">
-                  <ion-select-option disabled="true" value=""> {{"Select Sub-Category First."}} </ion-select-option>
+                  <ion-select-option *ngFor="let size of itemAvailableSize | async" value="size"> {{size}} </ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
