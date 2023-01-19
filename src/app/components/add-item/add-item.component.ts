@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesService, Icategory, IchildSubCat, IsubCategory,TypeSizeService } from 'api-package';
+import { CategoriesService, Icategory, IchildSubCat, IsubCategory,UtilService } from 'api-package';
 import { IsizeType } from 'api-package/lib/interfaces/sizeType';
 import { Observable } from 'rxjs';
 
@@ -18,7 +18,7 @@ export class AddItemComponent implements OnInit {
   public itemAvailableSize:Observable<any>|undefined;
   public sizeType:Observable<IsizeType[]>|undefined;
 
-  constructor(private category:CategoriesService, private typeSize:TypeSizeService) { }
+  constructor(private category:CategoriesService, private typeSize:UtilService) { }
 
   ngOnInit() {
     this.getCategories();
@@ -69,7 +69,7 @@ export class AddItemComponent implements OnInit {
   }
 
   onSelectGenderType=(event:any)=>{
-    this.typeId = event.detail.value.id;
+    this.typeId = event.detail.value.name.en;
     this.getSizeBasedOnType(this.childCategoryId,this.typeId);
   }
 
