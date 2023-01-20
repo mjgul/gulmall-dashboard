@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesService, Cloth, Icategory, IchildSubCat, IsubCategory,Item,UtilService } from 'api-package';
+import { CategoriesService, Cloth, Icategory, IchildSubCat, IsubCategory,Item,TypeSizeService } from 'api-package';
 import { IsizeType } from 'api-package/lib/interfaces/sizeType';
 import { Observable } from 'rxjs';
 import { size } from '../../../fake-response/size';
@@ -21,7 +21,7 @@ export class AddItemComponent implements OnInit {
   public sizeType:Observable<IsizeType[]>|undefined;
   private myFashion:Cloth = new Cloth();
 
-  constructor(private category:CategoriesService, private typeSize:UtilService) { }
+  constructor(private category:CategoriesService, private typeSize:TypeSizeService) { }
 
   ngOnInit() {
     this.getCategories();
@@ -45,16 +45,13 @@ export class AddItemComponent implements OnInit {
    * USING ID- MONGODB ID AND SETTING IT FOR CALLING SUB-CATEGORY.
    */
   onSelectCategory = (event:any):void => {
-    console.log(event)
-    let id:string = event.detail.value.id;
+    let catId:string = event.detail.value.id;
     let name = event.detail.value.name;
-    // GETTING SUB CATEGORIES OF ITEM.
     this.isGenderBased = event.detail.value.genderBased;
-    this.getSubCategory(id);
+    this.getSubCategory(catId);
     this.getSizeType();
-    this.myFashion.setItemCatId(id);
-    this.myFashion.setItemCategoryName("en",name.en)
-    this.myFashion.setItemCategoryName("ar",name.ar)
+    let category:Icategory = {id:catId,name:name.en};
+    this.myFashion.setCategory(category);
     console.log("ITEM ", this.myFashion)
   }
   /**
@@ -63,12 +60,10 @@ export class AddItemComponent implements OnInit {
    */
   onSelectSubCat(event:any):void{
     let subCategory = event.detail.value;
-    let id:string = event.detail.value.id;
-    this.myFashion.setItemSubCatId(id);
-    this.myFashion.setItemSubCategoryName("en",subCategory.name.en);
-    this.myFashion.setItemSubCategoryName("ar",subCategory.name.ar);
-    this.getSubCatChild(id);
-    
+    let subCatId:string = event.detail.value.id;
+    let subCat:IsubCategory = { id:subCatId,catId:this.myFashion.getCategory().getId(),name:subCategory.name.en};
+    this.myFashion.setSubCategory(subCat);
+    this.getSubCatChild(subCatId);
   }
 
   getSizeBasedOnType = async (child_cat_id:string,type:string) => {
@@ -82,9 +77,8 @@ export class AddItemComponent implements OnInit {
     this.childCategoryId = event.detail.value.id;
     let itemName = event.detail.value.name;
     console.log("ITEM NAME: ", itemName)
-    this.myFashion.setItemId(this.childCategoryId);
-    this.myFashion.setItemSubCategoryChildName("en",itemName.en);
-    this.myFashion.setItemSubCategoryChildName("ar",itemName.ar);
+    let item:IchildSubCat = { id:this.childCategoryId,subCatId:this.myFashion.getSubCategory().getId(),name:itemName.en,isGenderBased: false}
+    this.myFashion.setSubCatChild(item);
     console.log("**ITEM ", this.myFashion)
   }
 
@@ -94,7 +88,7 @@ export class AddItemComponent implements OnInit {
   }
 
   getColorsList = async () => {
-    this.itemAvailableColor = (await this.typeSize.getColors());
+    //this.itemAvailableColor = (await this.typeSize.getColors());
    
   }
 
