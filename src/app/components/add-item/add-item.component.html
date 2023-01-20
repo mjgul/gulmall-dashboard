@@ -13,7 +13,7 @@
         <ion-col>
           <ion-item>
             <ion-select interface="popover" placeholder="Describe more.." (ionChange)="onSelectSubCat($event)">
-              <ion-select-option *ngFor="let subCat of allSubCategories | async"  [value]="subCat.id" >{{subCat.name.en}}</ion-select-option>
+              <ion-select-option *ngFor="let subCat of allSubCategories | async"  [value]="subCat" >{{subCat.name.en}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -36,12 +36,22 @@
             <!---- SHOW ONLY IF THE CATEGORY HAS GENDER TYPE BINDING-->
             <ion-col size="12"  size-md="6" sizeSm="6">
               <ion-item>
-                <ion-select interface="popover" placeholder="Size">
-                  <ion-select-option *ngFor="let size of itemAvailableSize | async" value="size"> {{size}} </ion-select-option>
+                <ion-select [multiple]="true" interface="popover" placeholder="Size">
+                  <ion-select-option *ngFor="let size of itemAvailableSize" [value]="size"> {{size.name.en}} </ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
             <!---- SHOW ONLY IF THE CATEGORY HAS GENDER TYPE BINDING-->
+
+            <!---- SHOW ONLY IF THE CHILD SUB CATEGORY HAS COLOR TYPE BINDING-->
+            <ion-col size="12"  size-md="6" sizeSm="6">
+              <ion-item>
+                <ion-select [multiple]="true" interface="popover" placeholder="Available Colors" >
+                  <ion-select-option *ngFor="let color of itemAvailableColor | async" [value]="color"> {{color.name.en}} </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <!---- SHOW ONLY IF THE CHILD SUB CATEGORY HAS COLOR TYPE BINDING-->
         <ion-col size="12"  size-md="6">
           <ion-item>
             <ion-label>Title</ion-label>
@@ -64,6 +74,10 @@
           </ion-select>
         </ion-item></ion-col>
       </ion-row>
+      <ion-col>
+        <ion-button expand="full">Preview</ion-button>
+        <ion-button expand="full">Save</ion-button>
+      </ion-col>
     </ion-grid>
   </ion-list>
 </div>
