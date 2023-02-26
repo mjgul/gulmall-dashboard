@@ -6,28 +6,28 @@
         <ion-col>
           <ion-item>
             <ion-select interface="popover" placeholder="What to sell ?" (ionChange)="onSelectCategory($event)">
-              <ion-select-option  *ngFor="let category of allCategories |async" [value]="category">{{category.name}}</ion-select-option>
+              <ion-select-option  *ngFor="let category of allCategories |async" [value]="category">{{category.name.en}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <ion-col>
           <ion-item>
             <ion-select interface="popover" placeholder="Describe more.." (ionChange)="onSelectSubCat($event)">
-              <ion-select-option *ngFor="let subCat of allSubCategories | async"  [value]="subCat" >{{subCat.name}}</ion-select-option>
+              <ion-select-option *ngFor="let subCat of allSubCategories | async"  [value]="subCat" >{{subCat.name.en}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <ion-col>
           <ion-item>
             <ion-select interface="popover" placeholder="Select Item" (ionChange)="onSelectChildSubCat($event)">
-              <ion-select-option *ngFor="let childSubCat of childSubCategories | async" [value]="childSubCat"> {{ childSubCat.name }} </ion-select-option>
+              <ion-select-option *ngFor="let childSubCat of childSubCategories | async" [value]="childSubCat"> {{ childSubCat.name.en }} </ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <!---- SHOW ONLY IF THE CATEGORY HAS GENDER TYPE BINDING-->
         <ion-col>
           <ion-item>
-            <ion-select (ionChange)="onSelectGenderType($event)" interface="popover" [placeholder]=" isGenderBased ? 'Gender' : 'Weight' ">
+            <ion-select (ionChange)="onSelectGenderType($event)" interface="popover" [placeholder]="'Gender'">
               <ion-select-option *ngFor="let type of sizeType | async"  [value]="type"> {{type.name.en}} </ion-select-option>
             </ion-select>
           </ion-item>
@@ -47,7 +47,7 @@
             <ion-col size="12"  size-md="6" sizeSm="6">
               <ion-item>
                 <ion-select [multiple]="true" interface="popover" placeholder="Available Colors" >
-                  <ion-select-option *ngFor="let color of itemAvailableColor | async" [value]="color"> {{color.name.en}} </ion-select-option>
+                  <ion-select-option *ngFor="let color of itemAvailableColor" [value]="color"> {{color.name.en}} </ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>

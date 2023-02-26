@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriesService, Cloth, Icategory, IchildSubCat, IsubCategory,Item,TypeSizeService } from 'api-package';
 import { IsizeType } from 'api-package/lib/interfaces/sizeType';
 import { Observable } from 'rxjs';
-import { size } from '../../../fake-response/size';
 
 @Component({
   selector: 'app-add-item',
@@ -16,8 +15,8 @@ export class AddItemComponent implements OnInit {
   public allCategories: Observable<Icategory[]> | undefined;
   public allSubCategories: Observable<IsubCategory[]> | undefined;
   public childSubCategories:Observable<IchildSubCat[]> | undefined;
-  public itemAvailableSize:IsizeType[]|undefined;
-  public itemAvailableColor:Observable<any>|undefined;
+  public itemAvailableSize:any|undefined;
+  public itemAvailableColor:any|undefined;
   public sizeType:Observable<IsizeType[]>|undefined;
   private myFashion:Cloth = new Cloth();
 
@@ -67,10 +66,18 @@ export class AddItemComponent implements OnInit {
   }
 
   getSizeBasedOnType = async (child_cat_id:string,type:string) => {
-    this.itemAvailableSize = size;// (await this.typeSize.getAvailableSize(child_cat_id,type));
+    this.itemAvailableSize =  (await this.typeSize.getAvailableSize(child_cat_id,type));
+    this.itemAvailableSize.subscribe((res:any)=>{
+      console.log("Available Size: ", res.data[0].size)
+      this.itemAvailableSize = res.data[0].size;
+    })
   }
+
   getSizeType = async () => {
     this.sizeType = (await this.typeSize.getTypes());
+    this.sizeType.subscribe((res:any)=>{
+      console.log("Size: ", res)
+    })
   }
 
   onSelectChildSubCat=(event:any)=>{
@@ -88,7 +95,11 @@ export class AddItemComponent implements OnInit {
   }
 
   getColorsList = async () => {
-    //this.itemAvailableColor = (await this.typeSize.getColors());
+    this.itemAvailableColor = (await this.typeSize.getAllColors());
+    this.itemAvailableColor.subscribe((res:any)=>{
+      this.itemAvailableColor = res.data;
+      console.log("Item Available Color List: ", this.itemAvailableColor)
+    })
    
   }
 
