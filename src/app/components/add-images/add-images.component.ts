@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PopUpManagerService } from '../../services/pop-up-manager.service';
-import { ImageTakerService } from '../../services/image-taker.service';
+import { MediaService } from 'src/app/services/media/media.service';
 @Component({
   selector: 'app-add-images',
   templateUrl: './add-images.component.html',
@@ -11,7 +11,7 @@ export class AddImagesComponent implements OnInit {
   noImageTaken:boolean = false;
   imagesArray:any[] = []
   
-  constructor(private popUpManager:PopUpManagerService, private imageTaker:ImageTakerService,public sanitizer: DomSanitizer) { }
+  constructor(private popUpManager:PopUpManagerService, private mediaService:MediaService,public sanitizer: DomSanitizer) { }
 
   ngOnInit() {}
 
@@ -34,9 +34,10 @@ export class AddImagesComponent implements OnInit {
   // upload images form gallery as file
   uploadImages = async() => {
     // GALLERY PHOTOS WILL BE SAVED IN images VARIABLE.
-    let images = await this.imageTaker.getLibraryImages();
-    images.photos.forEach((x)=> this.imagesArray.push(this.sanitizer.bypassSecurityTrustUrl(x.webPath)));
-    console.log(images.photos)
+    let images = await this.mediaService.getLibraryImages();
+    console.log("IMAGES: ", images)
+    this.imagesArray = this.imagesArray.concat(images);
+    this.mediaService.uploadImages(this.imagesArray, 'post-images');
   }
 
 
