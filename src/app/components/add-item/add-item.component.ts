@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService, Cloth, Icategory, IchildSubCat, IsubCategory,Item,TypeSizeService } from 'api-package';
 import { IsizeType } from 'api-package/lib/interfaces/sizeType';
+import { AddItem } from '../../classes/addItem';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -23,8 +24,33 @@ export class AddItemComponent implements OnInit {
   constructor(private category:CategoriesService, private typeSize:TypeSizeService) { }
 
   ngOnInit() {
+    console.log("In add")
     this.getCategories();
     this.getColorsList();
+
+    let newItem = new AddItem();
+    // SETTING SUB CATEGORY CHILD ID
+    newItem.setItemId("1001"); // choose from db.
+    // SETTING PRICE
+    newItem.setPrice(200);
+    // SETTING QUANTITY
+    newItem.setQuantity(6);
+    // SETTING GENDER
+    newItem.setGender("Male");// choose from db.
+    // SETTING AVAILABLE COLOR
+    newItem.setAvailableColor("123"); // choose from db.
+    newItem.setAvailableColor("124"); // choose from db.
+    newItem.setAvailableColor("125"); // choose from db.
+    // SETTING AVAILABLE SIZE
+    newItem.setAvailableSize("211"); // choose from db.
+    newItem.setAvailableSize("212"); // choose from db.
+    newItem.setAvailableSize("213"); // choose from db.
+    newItem.setCategory("000") // choose from db.
+    newItem.setCurrency("PKR") // choose from db.
+    newItem.setSubCategory("001"); // choose from db.
+    newItem.setSizeChartId("009");
+    newItem.setName("3 piece suit")
+    console.log("New Item:",newItem);
   }
 
   getCategories = async()=>  {
