@@ -49,7 +49,7 @@ export class AddItemComponent implements OnInit {
     this.isGenderBased = event.detail.value.genderBased;
     this.getSubCategory(catId);
     this.getSizeType();
-    let category:Icategory = {id:catId,name:name.en};
+    let category:Icategory = {id:catId,name:name.en,icon:event.detail.value.icon};
     this.myFashion.setCategory(category);
     console.log("ITEM ", this.myFashion)
   }
@@ -60,7 +60,7 @@ export class AddItemComponent implements OnInit {
   onSelectSubCat(event:any):void{
     let subCategory = event.detail.value;
     let subCatId:string = event.detail.value.id;
-    let subCat:IsubCategory = { id:subCatId,catId:this.myFashion.getCategory().getId(),name:subCategory.name.en};
+    let subCat:IsubCategory = { id:subCatId,catId:this.myFashion.getCategory().getId(),name:subCategory.name.en,icon:event.detail.value.icon};
     this.myFashion.setSubCategory(subCat);
     this.getSubCatChild(subCatId);
   }
@@ -84,7 +84,7 @@ export class AddItemComponent implements OnInit {
     this.childCategoryId = event.detail.value.id;
     let itemName = event.detail.value.name;
     console.log("ITEM NAME: ", itemName)
-    let item:IchildSubCat = { id:this.childCategoryId,subCatId:this.myFashion.getSubCategory().getId(),name:itemName.en,isGenderBased: false}
+    let item:IchildSubCat = { id:this.childCategoryId,subCatId:this.myFashion.getSubCategory().getId(),name:itemName.en,isGenderBased: false,icon:event.detail.value.icon}
     this.myFashion.setSubCatChild(item);
     console.log("**ITEM ", this.myFashion)
   }
