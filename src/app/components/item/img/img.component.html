@@ -1,0 +1,12 @@
+
+    <swiper
+    [navigation]="true"
+    [zoom]="true"
+    [direction]="'horizontal'"
+    class="mySwiper"
+   (swiper)="onSwiper($event)" (slideChange)="onSlideChange($event)" class="mySwiper">
+      <ng-template swiperSlide *ngFor="let img of images"> 
+      <img [src]="this.sanitizer.bypassSecurityTrustResourceUrl(img)"/>
+      </ng-template>
+    </swiper>
+  

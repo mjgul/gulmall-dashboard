@@ -2,11 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriesService, Cloth, Icategory, IchildSubCat, IsubCategory,Item,TypeSizeService } from 'api-package';
 import { IsizeType } from 'api-package/lib/interfaces/sizeType';
 import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { ItemComponent } from '../item/item.component';
 
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
   styleUrls: ['./add-item.component.scss'],
+  standalone:true,
+  imports:[CommonModule,IonicModule,ItemComponent]
 })
 export class AddItemComponent implements OnInit {
   public isGenderBased:boolean = false;
@@ -18,7 +23,6 @@ export class AddItemComponent implements OnInit {
   public itemAvailableSize:any|undefined;
   public itemAvailableColor:any|undefined;
   public sizeType:Observable<IsizeType[]>|undefined;
-  private myFashion:Cloth = new Cloth();
 
   constructor(private category:CategoriesService, private typeSize:TypeSizeService) { }
 
@@ -49,9 +53,7 @@ export class AddItemComponent implements OnInit {
     this.isGenderBased = event.detail.value.genderBased;
     this.getSubCategory(catId);
     this.getSizeType();
-    let category:Icategory = {id:catId,name:name.en,icon:event.detail.value.icon};
-    this.myFashion.setCategory(category);
-    console.log("ITEM ", this.myFashion)
+    
   }
   /**
    * ON SELECTING CATEGORY THIS FUNCTION GETS CALLED
@@ -60,8 +62,8 @@ export class AddItemComponent implements OnInit {
   onSelectSubCat(event:any):void{
     let subCategory = event.detail.value;
     let subCatId:string = event.detail.value.id;
-    let subCat:IsubCategory = { id:subCatId,catId:this.myFashion.getCategory().getId(),name:subCategory.name.en,icon:event.detail.value.icon};
-    this.myFashion.setSubCategory(subCat);
+    
+    
     this.getSubCatChild(subCatId);
   }
 
@@ -84,9 +86,9 @@ export class AddItemComponent implements OnInit {
     this.childCategoryId = event.detail.value.id;
     let itemName = event.detail.value.name;
     console.log("ITEM NAME: ", itemName)
-    let item:IchildSubCat = { id:this.childCategoryId,subCatId:this.myFashion.getSubCategory().getId(),name:itemName.en,isGenderBased: false,icon:event.detail.value.icon}
-    this.myFashion.setSubCatChild(item);
-    console.log("**ITEM ", this.myFashion)
+   
+    
+    
   }
 
   onSelectGenderType=(event:any)=>{

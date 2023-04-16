@@ -1,26 +1,28 @@
 <div class="add-item-container">
-  <app-add-images></app-add-images>
+  
   <ion-list>
+    <app-add-images></app-add-images>
     <ion-grid>
       <ion-row>
+        <ion-col size="12" size-sm="3" size-md="6" size-lg="6">
         <ion-col>
           <ion-item>
             <ion-select interface="popover" placeholder="What to sell ?" (ionChange)="onSelectCategory($event)">
-              <ion-select-option  *ngFor="let category of allCategories |async" [value]="category">{{category.name.en}}</ion-select-option>
+              <ion-select-option  *ngFor="let category of allCategories |async" [value]="category">{{category.name}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <ion-col>
           <ion-item>
             <ion-select interface="popover" placeholder="Describe more.." (ionChange)="onSelectSubCat($event)">
-              <ion-select-option *ngFor="let subCat of allSubCategories | async"  [value]="subCat" >{{subCat.name.en}}</ion-select-option>
+              <ion-select-option *ngFor="let subCat of allSubCategories | async"  [value]="subCat" >{{subCat.name}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <ion-col>
           <ion-item>
             <ion-select interface="popover" placeholder="Select Item" (ionChange)="onSelectChildSubCat($event)">
-              <ion-select-option *ngFor="let childSubCat of childSubCategories | async" [value]="childSubCat"> {{ childSubCat.name.en }} </ion-select-option>
+              <ion-select-option *ngFor="let childSubCat of childSubCategories | async" [value]="childSubCat"> {{ childSubCat }} </ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -73,11 +75,17 @@
             <ion-select-option value="ued">UED</ion-select-option>
           </ion-select>
         </ion-item></ion-col>
-      </ion-row>
-      <ion-col>
-        <ion-button expand="full">Preview</ion-button>
-        <ion-button expand="full">Save</ion-button>
+        <ion-col>
+          <ion-button expand="full">Preview</ion-button>
+          <ion-button expand="full" disabled="true">Save</ion-button>
+        </ion-col>
       </ion-col>
+
+      <ion-col size="12" size-sm="3" size-md="6" size-lg="6">
+      
+      </ion-col>
+      </ion-row>
+     
     </ion-grid>
   </ion-list>
 </div>
