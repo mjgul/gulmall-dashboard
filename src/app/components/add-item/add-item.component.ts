@@ -5,13 +5,14 @@ import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { ItemComponent } from '../item/item.component';
+import { AddImagesComponent } from '../add-images/add-images.component';
 
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
   styleUrls: ['./add-item.component.scss'],
   standalone:true,
-  imports:[CommonModule,IonicModule,ItemComponent]
+  imports:[CommonModule,IonicModule,ItemComponent,AddImagesComponent]
 })
 export class AddItemComponent implements OnInit {
   public isGenderBased:boolean = false;

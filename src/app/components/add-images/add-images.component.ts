@@ -2,10 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PopUpManagerService } from '../../services/pop-up-manager.service';
 import { MediaService } from 'src/app/services/media/media.service';
+import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-add-images',
   templateUrl: './add-images.component.html',
   styleUrls: ['./add-images.component.scss'],
+  standalone:true,
+  imports:[IonicModule,CommonModule]
+
 })
 export class AddImagesComponent implements OnInit {
   noImageTaken:boolean = false;
