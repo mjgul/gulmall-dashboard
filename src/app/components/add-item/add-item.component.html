@@ -8,7 +8,7 @@
         <ion-col>
           <ion-item>
             <ion-select interface="popover" placeholder="What to sell ?" (ionChange)="onSelectCategory($event)">
-              <ion-select-option  *ngFor="let category of allCategories |async" [value]="category">{{category}}</ion-select-option>
+              <ion-select-option  *ngFor="let category of allCategories |async" [value]="category">{{category.name}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -22,7 +22,7 @@
         <ion-col>
           <ion-item>
             <ion-select interface="popover" placeholder="Select Item" (ionChange)="onSelectChildSubCat($event)">
-              <ion-select-option *ngFor="let childSubCat of childSubCategories | async" [value]="childSubCat"> {{ childSubCat }} </ion-select-option>
+              <ion-select-option *ngFor="let childSubCat of childSubCategories | async" [value]="childSubCat"> {{ childSubCat.name }} </ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>

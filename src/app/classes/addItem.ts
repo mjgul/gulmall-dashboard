@@ -1,17 +1,20 @@
+import { Icategory, Image } from "api-package";
+
 export class AddItem {
 
-    private item_id?:string;
-    private price?:number;
-    private quantity?:number;
+    private item_id?:string = null;
+    private price?:number = null;
+    private quantity?:number = null;
     private available_color?:string[] = [];
     private available_size?:string[] = [];
-    private size_chart?:string;
-    private gender?:string;
-    private category?:string;
-    private sub_category?:string;
-    private currency?:string;
-    private name?:string;
-    private status:string = "pending";
+    private size_chart?:string = null;
+    private gender?:string = null;
+    private category?:string=null;
+    private sub_category?:string=null;
+    private currency?:string=null;
+    private name?:string=null;
+    //private status:string = "pending";
+    private images:Image[] = [];
 
     public constructor(){
         
@@ -51,10 +54,12 @@ export class AddItem {
 
     public setCategory(categoryId:string){
         this.category = categoryId;
+        this.setSubCategory(null);
     }
 
     public setSubCategory(subCatId:string){
         this.sub_category = subCatId;
+        this.setItemId(null);
     }
 
     public setAvailableSize(sizeId:string){
@@ -75,6 +80,10 @@ export class AddItem {
 
     public setName(name:string){
        this.name = name
+    }
+
+    public setImages(images:Image[]){
+        this.images = images;
     }
 
 

@@ -34,9 +34,6 @@ export class AddItemComponent implements OnInit {
 
   getCategories = async()=>  {
     this.allCategories = (await this.category.getAllCategories());
-    this.allCategories.subscribe((res:Icategory[])=>{
-      console.log("NAME",res[0].name)  
-    })
   }
 
   getSubCategory = async (categoryId:string)=> {
@@ -86,12 +83,9 @@ export class AddItemComponent implements OnInit {
     })
   }
 
-  onSelectChildSubCat=(event:any)=>{
+  onSelectChildSubCat=(event)=>{
     this.childCategoryId = event.detail.value.id;
     let itemName = event.detail.value.name;
-    console.log("ITEM NAME: ", itemName)
-   
-    
     
   }
 
