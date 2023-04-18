@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesService, Cloth, Icategory, IchildSubCat, IsubCategory,Item,TypeSizeService } from 'api-package';
+import { CategoriesService, Cloth, Color, Icategory, IchildSubCat, IsubCategory,Item,Size,TypeSizeService } from 'api-package';
 import { IsizeType } from 'api-package/lib/interfaces/sizeType';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -18,11 +18,11 @@ export class AddItemComponent implements OnInit {
   public isGenderBased:boolean = false;
   public childCategoryId:string = "";
   public typeId:string = "";
-  public allCategories: Observable<Icategory[]> | undefined;
-  public allSubCategories: Observable<IsubCategory[]> | undefined;
-  public childSubCategories:Observable<IchildSubCat[]> | undefined;
-  public itemAvailableSize:any|undefined;
-  public itemAvailableColor:any|undefined;
+  public allCategories: Observable<Icategory[]>;
+  public allSubCategories: Observable<IsubCategory[]>;
+  public childSubCategories:Observable<IchildSubCat[]>;
+  public itemAvailableSize:Observable<any>;
+  public itemAvailableColor:Observable<any>;
   public sizeType:Observable<IsizeType[]>|undefined;
 
   constructor(private category:CategoriesService, private typeSize:TypeSizeService) { }
@@ -34,6 +34,9 @@ export class AddItemComponent implements OnInit {
 
   getCategories = async()=>  {
     this.allCategories = (await this.category.getAllCategories());
+    this.allCategories.subscribe((res:Icategory[])=>{
+      console.log("NAME",res[0].name)  
+    })
   }
 
   getSubCategory = async (categoryId:string)=> {
