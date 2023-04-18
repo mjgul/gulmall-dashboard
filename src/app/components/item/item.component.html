@@ -1,3 +1,56 @@
-<p>
-  item works!
-</p>
+<ion-grid *ngIf="item != undefined" class="item-container-posts">
+  <ion-row>
+    <ion-col>
+      <item-img></item-img>
+    </ion-col>
+  </ion-row>
+ 
+
+  <ion-row> 
+    <ion-col>
+     <div class="bottom">
+
+    <!-- <div class="item-name">
+        <ion-label>{{userData.language === 'en' ?  item.title.en : item.title.ar }}</ion-label>
+      </div> -->
+
+    <div class="chips">
+      <div class="chip h-v-centered">
+        <div class="icon-container  h-v-centered">
+
+        </div>
+        <div class="title-container">
+          <ion-label class="brand-label-container">
+            {{item.getItemTitle().getName('en')}}
+          </ion-label>
+        </div>
+
+      </div>
+
+      <div class="chip  price space-between">
+        <div class="rating-container horizontal-vertical-centered">
+          <div class="rating-icon-container horizontal-vertical-centered star-icon">
+            <img  height="20px" width="20px" [src]="this.sanitizer.bypassSecurityTrustResourceUrl(img)">
+          </div>
+          <div class="rating-label-container">4/5</div>
+          <div class="rating-numbers">
+            <span>(2)</span>
+          </div>
+        </div>
+        <div class="title-container">
+          <ion-label class="price">
+            <div class="price-digit">
+            <span>{{item.getItemPrice()}}</span>
+          </div>
+            <div class="currency-discount">
+              <span class="currency">OMR</span> 
+            </div>
+          </ion-label>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-col>
+</ion-row>
+
+</ion-grid>
