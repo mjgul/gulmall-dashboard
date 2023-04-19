@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { ItemComponent } from '../item/item.component';
 import { AddImagesComponent } from '../add-images/add-images.component';
-
+import { AddItemService } from 'src/app/services/add-item.service';
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
@@ -25,7 +25,7 @@ export class AddItemComponent implements OnInit {
   public itemAvailableColor:Observable<any>;
   public sizeType:Observable<IsizeType[]>|undefined;
 
-  constructor(private category:CategoriesService, private typeSize:TypeSizeService) { }
+  constructor(private category:CategoriesService, private typeSize:TypeSizeService, private addItemService:AddItemService) { }
 
   ngOnInit() {
     this.getCategories();
@@ -50,22 +50,19 @@ export class AddItemComponent implements OnInit {
    */
   onSelectCategory = (event:any):void => {
     let catId:string = event.detail.value.id;
-    let name = event.detail.value.name;
     this.isGenderBased = event.detail.value.genderBased;
     this.getSubCategory(catId);
     this.getSizeType();
-    
+    this.addItemService.setItemCategory(catId);
   }
   /**
    * ON SELECTING CATEGORY THIS FUNCTION GETS CALLED
    * USING ID- MONGODB ID AND SETTING IT FOR CALLING SUB-CATEGORY.
    */
   onSelectSubCat(event:any):void{
-    let subCategory = event.detail.value;
     let subCatId:string = event.detail.value.id;
-    
-    
     this.getSubCatChild(subCatId);
+    this.addItemService.setItemSubCategoryId(subCatId);
   }
 
   getSizeBasedOnType = async (child_cat_id:string,type:string) => {
@@ -85,13 +82,13 @@ export class AddItemComponent implements OnInit {
 
   onSelectChildSubCat=(event)=>{
     this.childCategoryId = event.detail.value.id;
-    let itemName = event.detail.value.name;
-    
+    this.addItemService.setItemSubCategoryId(this.childCategoryId);
   }
 
   onSelectGenderType=(event:any)=>{
     this.typeId = event.detail.value.name.en;
     this.getSizeBasedOnType(this.childCategoryId,this.typeId);
+    this.addItemService.setItemGender(event.detail.value.id);
   }
 
   getColorsList = async () => {
