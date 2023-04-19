@@ -39,7 +39,7 @@
             <ion-col size="12"  size-md="6" sizeSm="6">
               <ion-item>
                 <ion-select [multiple]="true" interface="popover" placeholder="Size">
-                  <ion-select-option *ngFor="let size of itemAvailableSize | async" [value]="size"> {{size}} </ion-select-option>
+                  <ion-select-option *ngFor="let size of itemAvailableSize | async" [value]="size"> {{size.getName()}} </ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
@@ -49,7 +49,7 @@
             <ion-col size="12"  size-md="6" sizeSm="6">
               <ion-item>
                 <ion-select [multiple]="true" interface="popover" placeholder="Available Colors" >
-                  <ion-select-option *ngFor="let color of itemAvailableColor | async" [value]="color"> {{color}} </ion-select-option>
+                  <ion-select-option *ngFor="let color of itemAvailableColor | async" [value]="color"> {{color.getName()}} </ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
