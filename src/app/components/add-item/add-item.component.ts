@@ -21,8 +21,8 @@ export class AddItemComponent implements OnInit {
   public allCategories: Observable<Icategory[]>;
   public allSubCategories: Observable<IsubCategory[]>;
   public childSubCategories:Observable<IchildSubCat[]>;
-  public itemAvailableSize:Observable<any>;
-  public itemAvailableColor:Observable<any>;
+  public itemAvailableSize:Observable<Size[]>;
+  public itemAvailableColor:Observable<Color[]>;
   public sizeType:Observable<IsizeType[]>|undefined;
 
   constructor(private category:CategoriesService, private typeSize:TypeSizeService, private addItemService:AddItemService) { }
@@ -93,11 +93,6 @@ export class AddItemComponent implements OnInit {
 
   getColorsList = async () => {
     this.itemAvailableColor = (await this.typeSize.getAllColors());
-    this.itemAvailableColor.subscribe((res:any)=>{
-      this.itemAvailableColor = res.data;
-      console.log("Item Available Color List: ", this.itemAvailableColor)
-    })
-   
   }
 
 }
