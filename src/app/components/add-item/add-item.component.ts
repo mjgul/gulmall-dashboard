@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesService, Cloth, Color, Icategory, IchildSubCat, IsubCategory,Item,Size,TypeSizeService } from 'api-package';
+import { CategoriesService, Color, Icategory, IchildSubCat, IsubCategory,Size,TypeSizeService } from 'api-package';
 import { IsizeType } from 'api-package/lib/interfaces/sizeType';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -82,7 +82,7 @@ export class AddItemComponent implements OnInit {
 
   onSelectChildSubCat=(event)=>{
     this.childCategoryId = event.detail.value.id;
-    this.addItemService.setItemSubCategoryId(this.childCategoryId);
+    this.addItemService.setItemSubCategoryChildId(this.childCategoryId);
   }
 
   onSelectGenderType=(event:any)=>{
@@ -95,4 +95,30 @@ export class AddItemComponent implements OnInit {
     this.itemAvailableColor = (await this.typeSize.getAllColors());
   }
 
+  onSelectSizeType=(event:any)=>{
+    this.addItemService.setItemAvailableSize(event.detail.value.id);
+  }
+
+  onSelectColorType=(event:any)=>{
+    this.addItemService.setItemAvailableColor(event.detail.value.id)
+  }
+
+  addTitle=(ev:any)=>{
+    this.addItemService.setItemTitle(ev.detail.value);
+  }
+
+  addQuantity=(ev:any)=>{
+    this.addItemService.setItemQuantity(ev.detail.value);
+  }
+
+  addPrice=(ev:any)=>{
+    this.addItemService.setItemPrice(ev.detail.value);
+  }
+
+  onSelectCurrency=(ev:any)=>{
+    console.log('currency',ev.detail.value)
+    let currency = ev.detail.value
+    this.addItemService.setItemCurrency(currency);
+    this.addItemService.printItemObject()
+  }
 }

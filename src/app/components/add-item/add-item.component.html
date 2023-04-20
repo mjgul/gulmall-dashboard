@@ -38,7 +38,7 @@
             <!---- SHOW ONLY IF THE CATEGORY HAS GENDER TYPE BINDING-->
             <ion-col size="12"  size-md="6" sizeSm="6">
               <ion-item>
-                <ion-select [multiple]="true" interface="popover" placeholder="Size">
+                <ion-select (ionChange)="onSelectSizeType($event)" [multiple]="true" interface="popover" placeholder="Size">
                   <ion-select-option *ngFor="let size of itemAvailableSize | async" [value]="size"> {{size.getName()}} </ion-select-option>
                 </ion-select>
               </ion-item>
@@ -48,7 +48,7 @@
             <!---- SHOW ONLY IF THE CHILD SUB CATEGORY HAS COLOR TYPE BINDING-->
             <ion-col size="12"  size-md="6" sizeSm="6">
               <ion-item>
-                <ion-select [multiple]="true" interface="popover" placeholder="Available Colors" >
+                <ion-select (ionChange)="onSelectColorType($event)" [multiple]="true" interface="popover" placeholder="Available Colors" >
                   <ion-select-option *ngFor="let color of itemAvailableColor | async" [value]="color"> {{color.getName()}} </ion-select-option>
                 </ion-select>
               </ion-item>
@@ -57,18 +57,18 @@
         <ion-col size="12"  size-md="6">
           <ion-item>
             <ion-label>Title</ion-label>
-            <ion-input placeholder="eg: 3 piece suit"></ion-input>
+            <ion-input (ionChange)="addTitle($event)" placeholder="eg: 3 piece suit"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col size="6">    <ion-item>
           <ion-label>Quantity</ion-label>
-          <ion-input inputmode="decimal" type="number" maxlength="1" placeholder="000"></ion-input>
+          <ion-input (ionChange)="addQuantity($event)" inputmode="decimal" type="number" maxlength="1" placeholder="000"></ion-input>
         </ion-item></ion-col>
         <ion-col size="12">
           <ion-item>
           <ion-label>Price x1</ion-label>
-          <ion-input type="number" placeholder="000"></ion-input>
-          <ion-select placeholder="Currency">
+          <ion-input (ionChange)="addPrice($event)" type="number" placeholder="000"></ion-input>
+          <ion-select (ionChange)="onSelectCurrency($event)" placeholder="Currency">
             <ion-select-option value="usd">USD</ion-select-option>
             <ion-select-option value="omr">OMR</ion-select-option>
             <ion-select-option value="pkr">PKR</ion-select-option>
@@ -76,7 +76,7 @@
           </ion-select>
         </ion-item></ion-col>
         <ion-col>
-          <ion-button expand="full" disabled="true">Save</ion-button>
+          <ion-button expand="full" [disabled]="false">Save</ion-button>
         </ion-col>
       </ion-col>
 

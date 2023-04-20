@@ -6,11 +6,10 @@ import { FirebaseStorageService } from 'src/app/services/firebase-storage.servic
 @Injectable({
   providedIn: 'root'
 })
-export class AddItemService {
-  item:AddItem = new AddItem();
+export class AddItemService extends AddItem {
 
-  constructor(private storageService:FirebaseStorageService) { 
-    
+  constructor(private storageService:FirebaseStorageService) {
+    super();
   }
 
   /**
@@ -18,7 +17,7 @@ export class AddItemService {
    * @param categoryId string
    */
   setItemCategory=(categoryId:string):void=>{
-    this.item.setCategory(categoryId);
+    this.setCategory(categoryId);
   }
 
    /**
@@ -26,7 +25,7 @@ export class AddItemService {
    * @param subCategoryId string
    */
   setItemSubCategoryId=(subCategoryId:string):void=>{
-    this.item.setSubCategory(subCategoryId)
+    this.setSubCategory(subCategoryId)
   }
 
   /**
@@ -34,15 +33,15 @@ export class AddItemService {
    * @param subCategoryChildId string
    */
   setItemSubCategoryChildId=(subCategoryChildId:string):void=>{
-    this.item.setItemId(subCategoryChildId);
+    this.setItemId(subCategoryChildId);
   }
 
   /**
-   * TAKES THE GENDER ID AND SET IN ITEM.
+   * TAKES THE GENDER ID AND SET IN 
    * @param gender string
    */
   setItemGender=(gender:string):void=>{
-    this.item.setGender(gender);
+    this.setGender(gender);
   }
 
   /**
@@ -50,7 +49,7 @@ export class AddItemService {
    * @param availableSize string
    */
   setItemAvailableSize=(availableSize:string):void =>{
-    this.item.setAvailableSize(availableSize);
+    this.setAvailableSize(availableSize);
   }
 
   /**
@@ -58,7 +57,7 @@ export class AddItemService {
    * @param availableColor string
    */
   setItemAvailableColor=(availableColor:string):void=>{
-    this.item.setAvailableColor(availableColor);
+    this.setAvailableColor(availableColor);
   }
 
   /**
@@ -66,7 +65,7 @@ export class AddItemService {
    * @param quantity number
    */
   setItemQuantity=(quantity:number):void=>{
-    this.item.setQuantity(quantity);
+    this.setQuantity(quantity);
   }
 
   /**
@@ -74,23 +73,23 @@ export class AddItemService {
    * @param price number
    */
   setItemPrice=(price:number):void=>{
-    this.item.setPrice(price);
+    this.setPrice(price);
   }
 
   /**
    * TAKES THE STRING TYPE OF CURRENCY
    * @param currency string
    */
-  setCurrency=(currency:string):void=>{
-    this.item.setCurrency(currency);
+  setItemCurrency=(currency:string):void=>{
+    this.setCurrency(currency);
   }
 
   /**
    * SET IMAGE OBJECT FOR ADDING ITEM
    * @param images Image
    */
-  setImages=(images:Image[]):void=>{
-    this.item.setImages(images);
+  setItemImages=(images:Image[]):void=>{
+    this.setImages(images);
   }
 
   /**
@@ -102,6 +101,10 @@ export class AddItemService {
       this.storageService.uploadFile(x.file,x.path);
     })
     
+  }
+
+  setItemTitle=(title:string)=>{
+  this.setName(title);
   }
 
 }
