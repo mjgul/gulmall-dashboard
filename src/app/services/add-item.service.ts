@@ -2,30 +2,36 @@ import { Injectable } from '@angular/core';
 import { AddItem } from 'src/app/classes/addItem';
 import { Image } from 'api-package'
 import { Snap } from '../classes/snap';
-import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
+import { Category, ChildSubCategory, SubCategory } from 'api-package/lib/classes/generic/categoty';
+import { FirebaseStorageService } from './firebase-storage.service';
 @Injectable({
   providedIn: 'root'
 })
 export class AddItemService extends AddItem {
-
+  private imagesList:Snap[] = [];
+  private country:string = 'OMAN';
+  private userId:string = "1001";
+  private userName:string = "Muhammad";
+  private userPhone:string = "96897022005";
+  private draftItemId:string = "2";
   constructor(private storageService:FirebaseStorageService) {
     super();
   }
 
   /**
-   * TAKES THE CAT ID AND SETS TO ITEM
-   * @param categoryId string
+   * TAKES THE CAT AND SETS TO ITEM
+   * @param category string
    */
-  setItemCategory=(categoryId:string):void=>{
-    this.setCategory(categoryId);
+  setItemCategory=(category:Category):void=>{
+    this.setCategory(category);
   }
 
    /**
    * TAKES THE SUB CAT ID AND SETS TO ITEM
    * @param subCategoryId string
    */
-  setItemSubCategoryId=(subCategoryId:string):void=>{
-    this.setSubCategory(subCategoryId)
+  setItemSubCategoryId=(subCat:SubCategory):void=>{
+    this.setSubCategory(subCat)
   }
 
   /**
@@ -94,13 +100,38 @@ export class AddItemService extends AddItem {
 
   /**
    * UPLOADS IMAGES TO FIREBSE STORAGE.
-   * @param images Snap[]
+   * 
    */
-  uploadImages=(images:Snap[])=>{
-    images.forEach(x=>{
-      this.storageService.uploadFile(x.file,x.path);
+  uploadImages=()=>{
+    this.imagesList.forEach((img)=>{
+      console.log("PATH: ", img.path);
+      this.storageService.uploadFile(img.file,img.path);
     })
     
+  }
+
+  setImageList=(images:Snap[])=>{
+    this.imagesList = images;
+    console.log("IMAGES has been set ++: ", this.imagesList)
+  }
+
+  setItemChild = (item:ChildSubCategory)=>{
+    this.setItem(item);
+  }
+
+  setImagePath=()=>{
+    console.log("PATH SETTING ")
+    this.imagesList.forEach((img)=>{
+      img.makeImagePath(this.country,
+        this.userId,this.userName,
+        this.userPhone,
+        this.getItemCategory().getName(),
+        this.getItemSubCategory().getName(),
+        this.getItem().getName(),
+        this.getItem().getId(),
+        this.draftItemId
+        )
+    })
   }
 
   setItemTitle=(title:string)=>{

@@ -1,4 +1,5 @@
 import { Icategory, Image } from 'api-package';
+import { Category, ChildSubCategory, SubCategory } from 'api-package/lib/classes/generic/categoty';
 import { Console } from 'console';
 
 export class AddItem {
@@ -9,8 +10,9 @@ export class AddItem {
   private available_size: string[] = [];
   private size_chart: string = null;
   private gender: string = null;
-  private category: string = null;
-  private sub_category: string = null;
+  private category:Category;
+  private sub_category: SubCategory;
+  private item:ChildSubCategory;
   private currency: string = null;
   private name: string = null;
   //private status:string = "pending";
@@ -72,26 +74,37 @@ export class AddItem {
    * TAKES THE CATEGORY ID AND SET AGAINST THE ITEM.
    * @param categoryId string
    */
-  protected setCategory(categoryId: string) {
-    if (categoryId != null || categoryId != undefined) {
-      this.category = categoryId;
-      this.setSubCategory(null);
+  protected setCategory(category: Category) {
+    console.log("CATEGORY: ", category)
+    if (category != null || category != undefined) {
+      this.category = category;
     } else {
       throw new Error('CATEGORY ID IS NOT DEFINED **');
     }
   }
   /**
-   * TAKES THE SUB CATEGORY ID AND SET AGAINST ITEM
+   * TAKES THE SUB CATEGORY AND SET AGAINST ITEM
    * @param subCatId string
    */
-  protected setSubCategory(subCatId: string) {
-    if (subCatId != null || subCatId != undefined) {
-      this.sub_category = subCatId;
-      this.setItemId(null);
+  protected setSubCategory(subCat: SubCategory) {
+    if (subCat != null || subCat != undefined) {
+      this.sub_category = subCat;
     } else {
       throw new Error('SUB CATEGORY ID IS NULL **');
     }
   }
+
+   /**
+   * TAKES THE SUB CATEGORY ID AND SET AGAINST ITEM
+   * @param subCatId string
+   */
+    protected setItem(item: ChildSubCategory) {
+      if (item != null || item != undefined) {
+        this.item = item;
+      } else {
+        throw new Error('ITEM CATEGORY IS NULL **');
+      }
+    }
 
   /**
    * TAKES THE SIZE ID AND SET AGAINST THE ITEM.
@@ -177,11 +190,11 @@ export class AddItem {
     return this.currency;
   };
 
-  public getItemSubCategory = (): string => {
+  public getItemSubCategory = (): SubCategory => {
     return this.sub_category;
   };
 
-  public getItemCategory = (): string => {
+  public getItemCategory = (): Category => {
     return this.category;
   };
 
@@ -212,6 +225,10 @@ export class AddItem {
   public getItemId = (): string => {
     return this.item_id;
   };
+
+  public getItem = ():ChildSubCategory=>{
+    return this.item
+  }
 
   public printItemObject = () => {
     console.log(`*********************************************`)

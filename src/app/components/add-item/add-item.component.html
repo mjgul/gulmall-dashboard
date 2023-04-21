@@ -30,7 +30,7 @@
         <ion-col>
           <ion-item>
             <ion-select (ionChange)="onSelectGenderType($event)" interface="popover" [placeholder]="'Gender'">
-              <ion-select-option *ngFor="let type of sizeType | async"  [value]="type"> {{type.name.en}} </ion-select-option>
+              <ion-select-option *ngFor="let type of gender | async"  [value]="type"> {{type.name}} </ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -76,7 +76,7 @@
           </ion-select>
         </ion-item></ion-col>
         <ion-col>
-          <ion-button expand="full" [disabled]="false">Save</ion-button>
+          <ion-button (click)="save()" expand="full" [disabled]="false">Save</ion-button>
         </ion-col>
       </ion-col>
 

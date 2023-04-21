@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FolderPage } from './folder.page';
 import { AddItemComponent } from '../components/add-item/add-item.component';
+import { ItemListComponent } from '../components/item-list/item-list.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
       {
         path:'add-item',
         component:AddItemComponent
+       },
+       {
+        path:'items-list',
+        component:ItemListComponent
        }
     ]
   },

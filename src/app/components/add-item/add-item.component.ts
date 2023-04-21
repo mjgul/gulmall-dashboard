@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CategoriesService, Color, Icategory, IchildSubCat, IsubCategory,Size,TypeSizeService } from 'api-package';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { CategoriesService, ChildSubCategory, Color, Icategory, IchildSubCat, IsubCategory,Size,SubCategory,TypeSizeService } from 'api-package';
 import { IsizeType } from 'api-package/lib/interfaces/sizeType';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -7,11 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { ItemComponent } from '../item/item.component';
 import { AddImagesComponent } from '../add-images/add-images.component';
 import { AddItemService } from 'src/app/services/add-item.service';
+import { Category } from 'api-package';
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
   styleUrls: ['./add-item.component.scss'],
   standalone:true,
+  changeDetection:ChangeDetectionStrategy.OnPush,
   imports:[CommonModule,IonicModule,ItemComponent,AddImagesComponent]
 })
 export class AddItemComponent implements OnInit {
@@ -23,7 +25,7 @@ export class AddItemComponent implements OnInit {
   public childSubCategories:Observable<IchildSubCat[]>;
   public itemAvailableSize:Observable<Size[]>;
   public itemAvailableColor:Observable<Color[]>;
-  public sizeType:Observable<IsizeType[]>|undefined;
+  public gender:Observable<IsizeType[]>|undefined;
 
   constructor(private category:CategoriesService, private typeSize:TypeSizeService, private addItemService:AddItemService) { }
 
@@ -49,20 +51,34 @@ export class AddItemComponent implements OnInit {
    * USING ID- MONGODB ID AND SETTING IT FOR CALLING SUB-CATEGORY.
    */
   onSelectCategory = (event:any):void => {
-    let catId:string = event.detail.value.id;
+    let _category = event.detail.value;
+    let cat:Icategory={id:_category.id,name:_category.name,icon:_category.icon};
+    let category:Category = new Category(cat);
     this.isGenderBased = event.detail.value.genderBased;
-    this.getSubCategory(catId);
+    console.log("Category:", event.detail)
+    this.getSubCategory(category.getId());
     this.getSizeType();
-    this.addItemService.setItemCategory(catId);
+    this.addItemService.setItemCategory(category);
   }
   /**
    * ON SELECTING CATEGORY THIS FUNCTION GETS CALLED
    * USING ID- MONGODB ID AND SETTING IT FOR CALLING SUB-CATEGORY.
    */
   onSelectSubCat(event:any):void{
+    let _category = event.detail.value;
+    let cat:IsubCategory={id:_category.id,name:_category.name,icon:_category.icon,catId:_category.cat_id};
+    let category:SubCategory = new SubCategory(cat);
     let subCatId:string = event.detail.value.id;
     this.getSubCatChild(subCatId);
-    this.addItemService.setItemSubCategoryId(subCatId);
+    this.addItemService.setItemSubCategoryId(category);
+  }
+
+  onSelectChildSubCat=(event)=>{
+    let _category = event.detail.value;
+    let cat:IchildSubCat={id:_category.id,name:_category.name,icon:_category.icon,subCatId:_category.sub_category_id,isGenderBased:_category.gneder_flag};
+    let category:ChildSubCategory = new ChildSubCategory(cat);
+    this.childCategoryId = event.detail.value.id;
+    this.addItemService.setItemChild(category);
   }
 
   getSizeBasedOnType = async (child_cat_id:string,type:string) => {
@@ -74,16 +90,10 @@ export class AddItemComponent implements OnInit {
   }
 
   getSizeType = async () => {
-    this.sizeType = (await this.typeSize.getTypes());
-    this.sizeType.subscribe((res:any)=>{
-      console.log("Size: ", res)
-    })
+    this.gender = (await this.typeSize.getTypes());
   }
 
-  onSelectChildSubCat=(event)=>{
-    this.childCategoryId = event.detail.value.id;
-    this.addItemService.setItemSubCategoryChildId(this.childCategoryId);
-  }
+  
 
   onSelectGenderType=(event:any)=>{
     this.typeId = event.detail.value.name.en;
@@ -120,5 +130,10 @@ export class AddItemComponent implements OnInit {
     let currency = ev.detail.value
     this.addItemService.setItemCurrency(currency);
     this.addItemService.printItemObject()
+    this.addItemService.setImagePath();
+  }
+
+  save(){
+    this.addItemService.uploadImages();
   }
 }

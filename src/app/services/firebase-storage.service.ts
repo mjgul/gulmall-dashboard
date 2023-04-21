@@ -13,8 +13,9 @@ export class FirebaseStorageService {
       
   }
 
-  uploadFile(blob:Blob,file_name:string) {
-            const storageRef = ref(this.storage,`OMAN/1001_MUHAMMAD_97022005/FASHION/MEN WESTERN WEAR/JUBBA/90/${file_name}`);
+  uploadFile(blob:Blob,path:string) {
+            console.log("PATH at the end", path);
+            const storageRef = ref(this.storage,path);
             uploadBytesResumable(storageRef, blob);
 }
 }
