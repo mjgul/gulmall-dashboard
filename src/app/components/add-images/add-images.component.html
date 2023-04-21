@@ -17,6 +17,15 @@
             <div class="delete-image-container" (click)="deleteImage(i)">
               <ion-icon name="trash-outline"></ion-icon>
             </div>
+            <div class="color-selector">
+              <ion-list>
+                <ion-item>
+                  <ion-select (ionChange)="setImageColor($event,img)" aria-label="Fruit" interface="action-sheet" placeholder="Select Color">
+                    <ion-select-option *ngFor="let item of availableColors" [value]="item">{{item.getName()}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-list>
+            </div>
           <img [src]="this.sanitizer.bypassSecurityTrustResourceUrl(img.webPath)" />
           </div>
         </ion-col>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AddItem } from 'src/app/classes/addItem';
-import { Image } from 'api-package'
+import { Color, Image } from 'api-package'
 import { Snap } from '../classes/snap';
 import { Category, ChildSubCategory, SubCategory } from 'api-package/lib/classes/generic/categoty';
 import { FirebaseStorageService } from './firebase-storage.service';
@@ -62,7 +62,7 @@ export class AddItemService extends AddItem {
    * TAKES THE COLOR ID OF THE COLOR AND PUSH IN ARRAY
    * @param availableColor string
    */
-  setItemAvailableColor=(availableColor:string):void=>{
+  setItemAvailableColor=(availableColor:Color[]):void=>{
     this.setAvailableColor(availableColor);
   }
 

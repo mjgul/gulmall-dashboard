@@ -33,3 +33,11 @@
         object-fit: cover;
     }
 }
+
+.color-selector{
+    position: absolute;
+    ion-list{
+        background: none;
+        padding: 0px !important;
+    }
+}

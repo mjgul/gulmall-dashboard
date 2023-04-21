@@ -1,4 +1,4 @@
-import { Icategory, Image } from 'api-package';
+import { Color, Icategory, Image } from 'api-package';
 import { Category, ChildSubCategory, SubCategory } from 'api-package/lib/classes/generic/categoty';
 import { Console } from 'console';
 
@@ -6,7 +6,7 @@ export class AddItem {
   private item_id: string = null;
   private price: number = null;
   private quantity: number = null;
-  private available_color: string[] = [];
+  private available_color: Color[] = [];
   private available_size: string[] = [];
   private size_chart: string = null;
   private gender: string = null;
@@ -47,12 +47,12 @@ export class AddItem {
   }
 
   /**
-   * PUSH THE SELECTED COLOR TO ARRAY.
-   * @param colorId
+   * ADDS THE SELECTED COLOR ARRAY TO COLOR.
+   * @param color
    */
-  protected setAvailableColor(colorId: string) {
-    if (colorId != null || colorId != undefined) {
-      this.available_color?.push(colorId);
+  protected setAvailableColor(color: Color[]) {
+    if (color != null || color != undefined) {
+      this.available_color = color;
     } else {
       throw new Error('COLOR ID IS NOT DEFINED **');
     }
@@ -210,7 +210,7 @@ export class AddItem {
     return this.available_size;
   };
 
-  public getItemAvailableColorList = (): string[] => {
+  public getItemAvailableColorList = (): Color[] => {
     return this.available_color;
   };
 

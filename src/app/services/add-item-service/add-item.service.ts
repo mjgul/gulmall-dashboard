@@ -1,39 +1,43 @@
 import { Injectable } from '@angular/core';
-import { CategoriesService, Icategory, IchildSubCat, IsubCategory,TypeSizeService } from 'api-package';
+import { CategoriesService, Color, Icategory, IchildSubCat, IsubCategory,Size,TypeSizeService } from 'api-package';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddItemService {
-  private isGenderBased:boolean = false;
-  private allCategories: Observable<Icategory[]> | undefined;
-  private allSubCategories: Observable<IsubCategory[]> | undefined;
-  private childSubCategories:Observable<IchildSubCat[]> | undefined;
-  private itemAvailableSize:Observable<any>|undefined;
+  public allCategories: Observable<Icategory[]>;
+  public allSubCategories: Observable<IsubCategory[]>;
+  public childSubCategories:Observable<IchildSubCat[]>;
+  public itemAvailableSize:Observable<Size[]>;
+  public itemAvailableColor:Observable<Color[]>;
   
-  constructor(private category:CategoriesService, private typeSize:TypeSizeService) { }
+  constructor(private category:CategoriesService, private typeSize:TypeSizeService) { 
+    this.getAllCategories();
+  }
 
   // RETURNS THE LIST OF CATEGORY
-  getAllCategories = async():Promise<Observable<Icategory[]>> => {
-    this.allCategories =  (await this.category.getAllCategories());
-    return this.allCategories;
+  private getAllCategories = async():Promise<Observable<Icategory[]>> => {
+     this.allCategories = (await this.category.getAllCategories());
+     return this.allCategories;
     }
 
+    public getCategories = ():Observable<Icategory[]> => {
+      return this.allCategories;
+    }
     // RETURNS THE LIST OF SUB-CATEGORY.
   getSubCategoryByCategoryId = async (categoryId:string):Promise<Observable<IsubCategory[]>> => {
-    this.allSubCategories = (await this.category.getSubCategoryByCategoryId(categoryId));
-    return this.allSubCategories;
+    return  (await this.category.getSubCategoryByCategoryId(categoryId));
   }
 
   // RETURN LIST OF CHILDREN.
   getChildOfSubCat = async (subCategoryId:string):Promise<Observable<IchildSubCat[]>> => {
-    this.childSubCategories = (await this.category.getChildBySubCategoryId(subCategoryId));
-    return this.childSubCategories;
+    return  (await this.category.getChildBySubCategoryId(subCategoryId));
+    
   }
 
   getAvailableSize = async(child_cat_id:string,type:string) => {
-    this.itemAvailableSize = (await this.typeSize.getAvailableSize(child_cat_id,type));
+    return (await this.typeSize.getAvailableSize(child_cat_id,type));
   }
 
 }

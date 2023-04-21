@@ -27,7 +27,7 @@ export class AddItemComponent implements OnInit {
   public itemAvailableColor:Observable<Color[]>;
   public gender:Observable<IsizeType[]>|undefined;
 
-  constructor(private category:CategoriesService, private typeSize:TypeSizeService, private addItemService:AddItemService) { }
+  constructor(private category:CategoriesService, private typeSize:TypeSizeService, public addItemService:AddItemService) { }
 
   ngOnInit() {
     this.getCategories();
@@ -110,7 +110,8 @@ export class AddItemComponent implements OnInit {
   }
 
   onSelectColorType=(event:any)=>{
-    this.addItemService.setItemAvailableColor(event.detail.value.id)
+    console.log("COLOR: ", event.detail.value);
+    this.addItemService.setItemAvailableColor(event.detail.value)
   }
 
   addTitle=(ev:any)=>{
