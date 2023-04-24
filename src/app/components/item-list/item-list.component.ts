@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AddItemService } from 'src/app/services/add-item-service/add-item.service';
 import { Color, Icategory, IchildSubCat, IsubCategory, Size } from 'api-package';
 import { IsizeType } from 'api-package/lib/interfaces/sizeType';
+import { ItemComponent } from '../item/item.component';
 
 @Component({
   selector: 'app-item-list',
@@ -23,6 +24,7 @@ import { IsizeType } from 'api-package/lib/interfaces/sizeType';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
+    ItemComponent,
     MatFormFieldModule]
 })
 export class ItemListComponent implements OnInit {

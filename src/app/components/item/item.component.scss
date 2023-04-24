@@ -1,0 +1,40 @@
+
+.item-container-posts{
+    padding: 0;
+}
+.item-container{
+    display: flex;
+    flex-direction: row;
+    .image-container{
+        height: 400px;
+        border: 1px solid;
+    }
+    .item-detail-container{
+        height: 400px;
+        border: 1px solid;
+        .basic-details{
+            .span{
+                padding-left: 5px;
+                font-weight: bold;
+            }
+            .pending{
+
+    height: 15px;
+    width: 15px;
+    background: #a73410;
+    margin-left: 10px;
+    border-radius: 100px;
+
+            }
+            .save-button{
+                margin: 0;
+            }
+           
+        }
+        .handlers{
+            .approve-reject{
+                display: flex;
+            }
+        }
+    }
+}

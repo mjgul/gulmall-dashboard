@@ -1,56 +1,40 @@
-<ion-grid *ngIf="item != undefined" class="item-container-posts">
-  <ion-row>
-    <ion-col>
-      <item-img></item-img>
-    </ion-col>
-  </ion-row>
- 
+<!--*ngIf="item != undefined"-->
+<ion-grid class="item-container-posts">
+<ion-row>
 
-  <ion-row> 
-    <ion-col>
-     <div class="bottom">
-
-    <!-- <div class="item-name">
-        <ion-label>{{userData.language === 'en' ?  item.title.en : item.title.ar }}</ion-label>
-      </div> -->
-
-    <div class="chips">
-      <div class="chip h-v-centered">
-        <div class="icon-container  h-v-centered">
-
-        </div>
-        <div class="title-container">
-          <ion-label class="brand-label-container">
-            {{item.getItemTitle().getName()}}
-          </ion-label>
-        </div>
-
-      </div>
-
-      <div class="chip  price space-between">
-        <div class="rating-container horizontal-vertical-centered">
-          <div class="rating-icon-container horizontal-vertical-centered star-icon">
-            <img  height="20px" width="20px" [src]="this.sanitizer.bypassSecurityTrustResourceUrl(img)">
-          </div>
-          <div class="rating-label-container">4/5</div>
-          <div class="rating-numbers">
-            <span>(2)</span>
-          </div>
-        </div>
-        <div class="title-container">
-          <ion-label class="price">
-            <div class="price-digit">
-            <span>{{item.getItemPrice()}}</span>
-          </div>
-            <div class="currency-discount">
-              <span class="currency">OMR</span> 
-            </div>
-          </ion-label>
-        </div>
-      </div>
+  <ion-col size="12" class="item-container">
+  <ion-col size="6" size-lg="8" size-md="6" size-sm="6">
+    <div class="image-container">
+        <app-edit-image></app-edit-image>
     </div>
-  </div>
-</ion-col>
+  </ion-col>
+  <ion-col size="6" size-lg="4"  size-md="6" size-sm="6">
+    <div class="item-detail-container">
+      <ion-grid>
+        <ion-row class="basic-details">
+          <ion-col><ion-chip> Orders <span class="span">(0)</span> </ion-chip></ion-col>
+          <ion-col> <ion-chip> Views<span class="span">(0)</span>  </ion-chip></ion-col>
+          <ion-col> <ion-chip> Pending <div class="pending"></div> </ion-chip></ion-col>
+        </ion-row>
+        <ion-row></ion-row>
+        <ion-row class="handlers">
+          <ion-col size="6" class="approve-reject">
+            <ion-segment mode="ios" value="default">
+              <ion-segment-button value="default">
+                <ion-label>Approve</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="segment">
+                <ion-label>Reject</ion-label>
+              </ion-segment-button>
+            </ion-segment>
+          </ion-col>
+          <ion-col size="6" class="save-button">
+           <ion-button expand="full">SAVE</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-col>
+  </ion-col>
 </ion-row>
-
 </ion-grid>

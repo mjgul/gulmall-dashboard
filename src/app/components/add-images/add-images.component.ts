@@ -19,7 +19,7 @@ import { Snap } from 'src/app/classes/snap';
 export class AddImagesComponent implements OnInit {
   @Input() availableColors:Color[] = [];
   noImageTaken:boolean = false;
-  imagesArray:Snap[] = []
+  imagesArray:Snap[] = [];
   
   constructor(private popUpManager:PopUpManagerService,
     private addItem:AddItemService,

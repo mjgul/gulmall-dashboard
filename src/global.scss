@@ -11,6 +11,14 @@
 
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+@import "swiper/css/navigation";
+@import 'swiper/css/zoom';
+@import 'swiper/css/autoplay';
+@import "swiper/css";
+@import "swiper/css/effect-coverflow";
+@import "swiper/css/pagination";
 
 /* Basic CSS for apps built with Ionic */
 @import "~@ionic/angular/css/normalize.css";

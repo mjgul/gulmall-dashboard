@@ -12,7 +12,7 @@ SwiperCore.use([Autoplay,Pagination,Navigation]);
   templateUrl: './img.component.html',
   styleUrls: ['./img.component.scss'],
   standalone:true,
-  imports:[CommonModule,IonicModule,SwiperModule],
+  imports:[CommonModule,IonicModule,SwiperModule,NgOptimizedImage],
 })
 export class ItemImg implements OnInit {
   
