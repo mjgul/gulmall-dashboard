@@ -8,3 +8,21 @@
         height: 20%;
     }
 }
+
+
+    .add-new-image{
+        height: 70px;
+        width: 400px;
+        background: pink;
+    }
+
+.scroll-items{
+    justify-content: flex-start; // changed
+    flex-wrap: nowrap;
+    overflow-x: scroll !important;
+    overflow-y: hidden;
+}
+.scroll-items ion-col { // added
+    display: flex;
+    flex-wrap: nowrap;
+}

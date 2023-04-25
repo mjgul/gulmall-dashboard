@@ -2,5 +2,12 @@
   <div class="image-view-container">
     <item-img [images]="dummyImages"></item-img>
   </div>
-  <div class="image-list-container"></div>
+  <ion-row class="scroll-items" >
+    <ion-col size="3">
+      <div class="add-new-image"></div>
+    </ion-col>
+    <ion-col size="3" *ngFor="let item of dummyImages">
+      <div class="images-list-item add-new-image"></div>
+</ion-col>
+</ion-row>
 </div>

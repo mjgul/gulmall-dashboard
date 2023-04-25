@@ -14,7 +14,7 @@ import { ItemImg } from '../item/img/img.component';
 })
 export class EditImageComponent implements OnInit {
   @Input() images:Image[] = [];
-  dummyImages=['https://firebasestorage.googleapis.com/v0/b/gul-e-mall-app.appspot.com/o/default-images%2Ffavorite.png?alt=media&token=9e88348d-6490-4ef7-a282-fbfe29925fb8','https://firebasestorage.googleapis.com/v0/b/gul-e-mall-app.appspot.com/o/default-images%2Ffavorite.png?alt=media&token=9e88348d-6490-4ef7-a282-fbfe29925fb8','https://firebasestorage.googleapis.com/v0/b/gul-e-mall-app.appspot.com/o/default-images%2Ffavorite.png?alt=media&token=9e88348d-6490-4ef7-a282-fbfe29925fb8']
+  dummyImages=['https://firebasestorage.googleapis.com/v0/b/gul-e-mall-app.appspot.com/o/default-images%2Ffavorite.png?alt=media&token=9e88348d-6490-4ef7-a282-fbfe29925fb8','https://firebasestorage.googleapis.com/v0/b/gul-e-mall-app.appspot.com/o/default-images%2Ffavorite.png?alt=media&token=9e88348d-6490-4ef7-a282-fbfe29925fb8','https://firebasestorage.googleapis.com/v0/b/gul-e-mall-app.appspot.com/o/default-images%2Ffavorite.png?alt=media&token=9e88348d-6490-4ef7-a282-fbfe29925fb8','https://firebasestorage.googleapis.com/v0/b/gul-e-mall-app.appspot.com/o/default-images%2Ffavorite.png?alt=media&token=9e88348d-6490-4ef7-a282-fbfe29925fb8','https://firebasestorage.googleapis.com/v0/b/gul-e-mall-app.appspot.com/o/default-images%2Ffavorite.png?alt=media&token=9e88348d-6490-4ef7-a282-fbfe29925fb8','https://firebasestorage.googleapis.com/v0/b/gul-e-mall-app.appspot.com/o/default-images%2Ffavorite.png?alt=media&token=9e88348d-6490-4ef7-a282-fbfe29925fb8']
   constructor() { }
 
   ngOnInit() {}
