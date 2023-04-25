@@ -9,11 +9,19 @@
     }
 }
 
+    .upload-new-image{
+        height: 100%;
+    width: 100%;
+    object-fit: cover;
+    }
 
     .add-new-image{
         height: 70px;
-        width: 400px;
-        background: pink;
+        min-width: 100px;
+        margin-left: 10px;
+        border: 1px solid;
+        display: flex;
+        justify-content: center;
     }
 
 .scroll-items{

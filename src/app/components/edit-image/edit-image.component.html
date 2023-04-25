@@ -4,10 +4,14 @@
   </div>
   <ion-row class="scroll-items" >
     <ion-col size="3">
-      <div class="add-new-image"></div>
+      <div class="add-new-image upload-new-image">
+        <img src="https://t4.ftcdn.net/jpg/02/17/88/73/360_F_217887350_mDfLv2ootQNeffWXT57VQr8OX7IvZKvB.jpg" />
+      </div>
     </ion-col>
-    <ion-col size="3" *ngFor="let item of dummyImages">
-      <div class="images-list-item add-new-image"></div>
+    <ion-col>
+      <div class="images-list-item add-new-image" *ngFor="let item of dummyImages">
+        <img [src]="item" />
+      </div>
 </ion-col>
 </ion-row>
 </div>

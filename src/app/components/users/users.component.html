@@ -1,0 +1,29 @@
+<ion-grid>
+  <ion-segment mode="ios" value="default" value="seller">
+    <ion-segment-button value="seller">
+      <ion-label>SELLER</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="buyer">
+      <ion-label>BUYERS</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  
+  <!--SELLERS-->
+  <ion-row>
+    <ion-card-header>120 Sellers</ion-card-header>
+    <ion-col size="12" size-sm="12" size-lg="3" size-md="6" *ngFor="let item of [1,2,3,4,5,6,6,7,8,8,8,8]">
+    <app-seller></app-seller>
+  </ion-col>
+  </ion-row>
+  <!--SELLERS-->
+
+
+  <!--USERS-->
+  <ion-row *ngIf="1>2">
+    <ion-card-header>500k Buyers</ion-card-header>
+    <ion-col size="12" size-sm="12" size-lg="3" size-md="6" *ngFor="let item of [1,2,3,4,5,6,6,7,8,8,8,8]">
+    <app-buyer></app-buyer>
+  </ion-col>
+  </ion-row>
+  <!--USERS-->
+</ion-grid>
