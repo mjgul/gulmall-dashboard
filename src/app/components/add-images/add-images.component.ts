@@ -55,8 +55,6 @@ export class AddImagesComponent implements OnInit {
   uploadImages = async() => {
     // GALLERY PHOTOS WILL BE SAVED IN images VARIABLE.
     let images = await this.mediaService.getLibraryImages();
-   
-    
     let imageObjects = await this.mediaService.uploadImages(images, 'post-images');
     imageObjects.forEach((img)=> this.imagesArray.push(img));
     console.log("IMAGES: ", imageObjects)

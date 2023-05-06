@@ -17,7 +17,7 @@ export class Snap  {
     }
 
     public makeImagePath=(country:string,userId:string,userName:string,userPhone:string,categoryName:string,subCategoryName:string,itemName:string,itemChildId:string,itemId:string)=>{
-    let path = `${country}/${userId}_${userName}_${userPhone}/${categoryName}/${subCategoryName}/${itemName}/${itemChildId}/${itemId}/${this.name}`;
+    let path = `${country}/posts/${userId}_${userName}_${userPhone}/${categoryName}/${subCategoryName}/${itemName}/${itemChildId}/${itemId}/${this.name}`;
     this.path = path;
     console.log("Image path:", this)
     }
