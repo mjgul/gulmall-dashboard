@@ -93,8 +93,6 @@ export class AddItemComponent implements OnInit {
     this.gender = (await this.typeSize.getTypes());
   }
 
-  
-
   onSelectGenderType=(event:any)=>{
     this.typeId = event.detail.value.name.en;
     this.getSizeBasedOnType(this.childCategoryId,this.typeId);
