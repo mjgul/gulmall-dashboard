@@ -9,5 +9,7 @@ export const environment = {
     messagingSenderId: '403934697222',
     measurementId: 'G-XTYN4VZDJE',
   },
-  production: true
+  production: true,
+  azureAccountName:"AZURE_CLIENT_NAME",
+  azureSasToken:"AZURE_SAS_TOKEN"
 };

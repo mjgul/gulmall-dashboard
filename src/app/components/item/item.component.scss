@@ -28,6 +28,9 @@
             }
             .save-button{
                 margin: 0;
+
+                
+                
             }
            
         }
@@ -37,4 +40,14 @@
             }
         }
     }
+}
+
+.container{
+    display: flex;
+    
+    align-items: center;
+}
+
+ion-button {
+    text-transform: none !important;
 }

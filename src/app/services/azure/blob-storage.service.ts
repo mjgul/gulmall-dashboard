@@ -17,7 +17,7 @@ export class BlobStorageService {
     for await(const blob of blobs){
       result.push(blob.name);
     }
-    return result;
+    return result;//03019863919
   }
 
   public uploadImage = async(content:Snap[],postId:string)=>{

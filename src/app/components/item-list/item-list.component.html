@@ -1,81 +1,104 @@
 <ion-grid>
   <ion-row>
     <form class="example-form">
+      <ion-col>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Category</mat-label>
+          <input
+            type="text"
+            placeholder="Pick one"
+            aria-label="Number"
+            matInput
+            [formControl]="categoryControl"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option
+              (click)="selectedCategory(category)"
+              *ngFor="let category of categories | async"
+              [value]="category.name"
+            >
+              {{ category.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </ion-col>
+      <ion-col>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Sub Category</mat-label>
+          <input
+            type="text"
+            placeholder="Pick one"
+            aria-label="Number"
+            matInput
+            [formControl]="subCategoryControl"
+            [matAutocomplete]="auto2"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
+            <mat-option
+              (click)="selectedSubCategory(subCategory)"
+              *ngFor="let subCategory of subCategories | async"
+              [value]="subCategory.name"
+            >
+              {{ subCategory.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </ion-col>
+      <ion-col>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Item</mat-label>
+          <input
+            type="text"
+            placeholder="Pick one"
+            aria-label="Number"
+            matInput
+            [formControl]="subCategoryChildControl"
+            [matAutocomplete]="auto3"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto3="matAutocomplete">
+            <mat-option
+              *ngFor="let option of subCategoyChild | async"
+              [value]="option.name"
+            >
+              {{ option.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </ion-col>
+    </form>
+    <!-------SEARCH BUTTON------->
     <ion-col>
-
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Category</mat-label>
-    <input type="text"
-           placeholder="Pick one"
-           aria-label="Number"
-           matInput
-           [formControl]="categoryControl"
-           [matAutocomplete]="auto">
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option (click)="selectedCategory(category)" *ngFor="let category of categories | async" [value]="category.name">
-        {{category.name}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-
-</ion-col>
-<ion-col>
-  
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Sub Category</mat-label>
-      <input type="text"
-             placeholder="Pick one"
-             aria-label="Number"
-             matInput
-             [formControl]="subCategoryControl"
-             [matAutocomplete]="auto2">
-      <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
-        <mat-option (click)="selectedSubCategory(subCategory)"  *ngFor="let subCategory of subCategories | async" [value]="subCategory.name">
-          {{subCategory.name}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  
-  </ion-col>
-  <ion-col>
-    
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Item</mat-label>
-        <input type="text"
-               placeholder="Pick one"
-               aria-label="Number"
-               matInput
-               [formControl]="subCategoryChildControl"
-               [matAutocomplete]="auto3">
-        <mat-autocomplete  autoActiveFirstOption #auto3="matAutocomplete">
-          <mat-option  *ngFor="let option of subCategoyChild | async" [value]="option.name">
-            {{option.name}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    
+      <ion-item>
+        <ion-input placeholder=" Search Item">#</ion-input>
+        <ion-select value="itemId">
+          <ion-select-option value="itemId">Item ID</ion-select-option>
+          <ion-select-option value="userId">User ID</ion-select-option>
+          <ion-select-option value="userPhone">User Phone</ion-select-option>
+        </ion-select>
+        <ion-button>Search</ion-button>
+      </ion-item>
     </ion-col>
-  </form>
-</ion-row>
-<ion-row>
-  <ion-header>
-    <ion-toolbar>
-      <ion-segment mode="ios" value="all">
-        
-        <ion-segment-button value="active">
-          <ion-label>Active</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="pending">
-          <ion-label>Pending</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="rejected">
-          <ion-label>Rejected</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-toolbar>
-  </ion-header>
-</ion-row>
-<div class="item">
-<item-component></item-component>
-</div>
+    <!-------SEARCH BUTTON------->
+  </ion-row>
+  <ion-row>
+    <ion-header>
+      <ion-toolbar>
+        <ion-segment mode="ios" value="active">
+          <ion-segment-button value="active">
+            <ion-label>Active</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="pending">
+            <ion-label>Pending</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="rejected">
+            <ion-label>Rejected</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+    </ion-header>
+  </ion-row>
+  <div class="item">
+    <item-component></item-component>
+  </div>
 </ion-grid>

@@ -22,6 +22,7 @@
         border: 1px solid;
         display: flex;
         justify-content: center;
+        position: relative;
     }
 
 .scroll-items{
@@ -33,4 +34,12 @@
 .scroll-items ion-col { // added
     display: flex;
     flex-wrap: nowrap;
+}
+
+.delete-button{
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    background: orange;
+    right: 0;
 }

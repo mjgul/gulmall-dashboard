@@ -18,7 +18,7 @@
         </ion-row>
         <ion-row></ion-row>
         <ion-row class="handlers">
-          <ion-col size="6" class="approve-reject">
+          <ion-col size="12" class="approve-reject">
             <ion-segment mode="ios" value="default">
               <ion-segment-button value="default">
                 <ion-label>Approve</ion-label>
@@ -28,9 +28,89 @@
               </ion-segment-button>
             </ion-segment>
           </ion-col>
+          <ion-col size="6">
+            <div class="container">
+              <ion-label>Title</ion-label>
+            <ion-input placeholder="Title"></ion-input>
+          </div>
+          </ion-col>
+          <ion-col size="6">
+            <ion-select value="cotton">
+              <ion-select-option value="cotton">Cotton</ion-select-option>
+              <ion-select-option value="silk">Silk</ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col size="6">
+            <div class="container">
+            <ion-label>Price</ion-label>
+            <ion-input placeholder="Price"></ion-input>
+          </div>
+          </ion-col>
+          <ion-col size="6">
+            <div class="container">
+            <ion-label>Quantity</ion-label>
+            <ion-input placeholder="Quantity"></ion-input>
+          </div>
+          </ion-col>
+          <ion-col size="6">
+            <div class="container">
+            <ion-label>Currency</ion-label>
+            <ion-input placeholder="PKR"></ion-input>
+          </div>
+          </ion-col>
+          <ion-col size="6">
+            <div class="container">
+            <ion-label>Rating</ion-label>
+            <ion-input placeholder="4.0"></ion-input>
+          </div>
+          </ion-col>
+          <ion-col size="6">
+            <div class="container">
+            <ion-label>Colors</ion-label>
+            <ion-select>
+              <ion-select-option>Red</ion-select-option>
+              <ion-select-option>Blue</ion-select-option>
+              <ion-select-option>Orange</ion-select-option>
+            </ion-select>
+          </div>
+          </ion-col>
+          <ion-col size="6">
+            <div class="container">
+            <ion-label>Size</ion-label>
+            <ion-select>
+              <ion-select-option>S</ion-select-option>
+              <ion-select-option>M</ion-select-option>
+              <ion-select-option>L</ion-select-option>
+            </ion-select>
+          </div>
+          </ion-col>
+          <ion-col size="6">
+            <div class="container">
+            <ion-label>Cloth Type</ion-label>
+            <ion-select>
+              <ion-select-option>Ready Made</ion-select-option>
+              <ion-select-option>Unstitched</ion-select-option>
+            </ion-select>
+          </div>
+          </ion-col>
+          <ion-col size="6">
+            <div class="container">
+            <ion-label>Gender</ion-label>
+            <ion-select>
+              <ion-select-option>Junior</ion-select-option>
+              <ion-select-option>Men</ion-select-option>
+              <ion-select-option>Women</ion-select-option>
+              <ion-select-option>All</ion-select-option>
+            </ion-select>
+          </div>
+          </ion-col>
+         
           <ion-col size="6" class="save-button">
            <ion-button expand="full">SAVE</ion-button>
           </ion-col>
+          <ion-col size="6" class="save-button">
+            <ion-button expand="full">Seller Whatsapp</ion-button>
+           </ion-col>
         </ion-row>
       </ion-grid>
     </div>

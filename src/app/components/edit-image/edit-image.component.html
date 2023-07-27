@@ -10,6 +10,9 @@
     </ion-col>
     <ion-col>
       <div class="images-list-item add-new-image" *ngFor="let item of dummyImages">
+        <div (click)="deleteImage()" class="delete-button horizontal-vertical-centered">
+          <ion-icon src="assets/icon/trash.svg"></ion-icon>
+        </div>
         <img [src]="item" />
       </div>
 </ion-col>
