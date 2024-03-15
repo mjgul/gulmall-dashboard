@@ -1,8 +1,8 @@
 {
-  "name": "paktrade-dashboard",
+  "name": "gulmall-dashboard",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "GulMall",
+  "homepage": "https://gulmall.com",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -71,5 +71,5 @@
     "ts-node": "~8.3.0",
     "typescript": "~4.8.4"
   },
-  "description": "An Ionic project"
+  "description": "Gull Industries"
 }
