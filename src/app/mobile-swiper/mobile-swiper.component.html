@@ -1,0 +1,69 @@
+<div class="relative">
+  <div class="swiper-container details-banner overflow-hidden">
+    <div
+      [ngClass]="portraitMode==true ? 'max-h-[70vh]' : 'aspect-14/9'"
+      [style.height]="portraitMode==true?finalHeight:''"
+      class="swiper-wrapper relative"
+    >
+      
+      @for (image of images; track image; let i= $index) {
+      <div class="swiper-slide mb-0 flex justify-center items-center">
+        @if (portraitMode) {
+        <div
+          class="absolute w-full h-full top-0 right-0 left-0 z-[-1] overflow-hidden"
+        >
+          <img
+            [loading]="i==0?'eager' :'lazy'"
+            class="cursor-pointer object-cover max-w-full h-full overflow-hidden brightness-70"
+            [src]="image?.detailsSmall"
+            onerror="this.style.display='none'"
+            alt=""
+          />
+        </div>
+        }
+
+        <div class="swiper-zoom-container">
+          <img
+            class="cursor-pointer h-full object-contain backdrop-blur-md"
+            [ngClass]="portraitMode ? 'object-contain' : 'object-cover'"
+            [src]="image?.detailsLarge ?? image"
+            [hidden]="!imageLoaded[i]"
+            onerror="this.style.display='none'"
+            (load)="onImageLoad(i)"
+            alt=""
+          />
+          <img
+            [src]="image?.detailsSmall"
+            [loading]="i==0?'eager' :'lazy'"
+            [ngClass]="portraitMode ? 'object-contain' : 'object-cover'"
+            class="cursor-pointer h-full object-contain backdrop-blur-md"
+            [hidden]="imageLoaded[i]"
+            onerror="this.style.display='none'"
+            alt=""
+          />
+        </div>
+      </div>
+      }
+    </div>
+    <!-- badge , is absolute  assign classes gold-badge, silver-badge bronze-badge -->
+
+    <div
+      class="swiper-pagination flex justify-center items-center gap-sm bg-white px-md py-xs w-max rounded-[32px] !shadow-2xl !bottom-[-10px]"
+    >
+      @for (slide of images; track slide; let i = $index) {
+      <div
+        [ngClass]="{
+          'text-[11px] bold-family bg-brand-600 !rounded-full w-[32px] h-4  text-white flex justify-center items-center pb-xxs ':
+            i === activeIndex,
+          'h-2 w-2 rounded-full bg-gray-200': i !== activeIndex
+        }"
+      >
+        @if (i === activeIndex) {
+        <span class="!rounded-full"> {{ i + 1 }}/{{ images.length }}</span>
+        }
+        
+      </div>
+      }
+    </div>
+  </div>
+</div>

@@ -36,6 +36,9 @@ export class AddItemComponent implements OnInit {
 
   getCategories = async()=>  {
     this.allCategories = (await this.category.getAllCategories());
+    this.allCategories.subscribe(res=>{
+      console.log("categories: ",res);
+    })
   }
 
   getSubCategory = async (categoryId:string)=> {
