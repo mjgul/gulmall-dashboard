@@ -1,233 +1,236 @@
 <ion-grid>
+
+  <div class="bg-gray-100 border-b border-gray-300 hidden navbar w-full xl:block">
+    <nav class="container mx-auto box-border px-xl">
+      <ul class="flex w-full justify-between">
+        <li 
+          class="ant-dropdown-trigger flex items-center flex-col relative category-list leading-6 bold-family py-lg text-lg gap-xs cursor-pointer hover:text-brand-600 text-gray-500">
+          <ion-icon class="text-3xl ios hydrated" role="img"></ion-icon>
+          <div class="flex justify-center items-center gap-sm"><span class="text-sm xl:text-base">
+              Clothing</span><ion-icon src="assets/icon/layout/chevron-forward.svg"
+              class="text-lg rotate-90 absolute end-[-18px] rtl:bottom-[16px] ltr:bottom-[15px] ios hydrated"
+              role="img"></ion-icon></div>
+        </li><!----><!----><!----><!---->
+        <li
+          class="flex items-center flex-col category-list leading-6 bold-family py-lg text-lg gap-xs cursor-pointer hover:text-brand-600 text-gray-500">
+          <ion-icon class="text-3xl ios hydrated" role="img"></ion-icon><span class="text-sm xl:text-base"> Mart</span>
+        </li><!----><!---->
+      </ul>
+    </nav>
+  </div>
   <!--TOP FLAGS-->
   <ion-row>
+
     <ion-col size-sm="12" size-lg="3" size-md="4" size-xl="2">
       <ion-card>
-        <ion-card-title
-          >Orders <span class="order-number">{{today_order}}</span></ion-card-title
-        >
+        <ion-card-title>Delivered
+          <span class="order-number delivered">{{total_delivered_order}}</span></ion-card-title>
       </ion-card>
     </ion-col>
     <ion-col size-sm="12" size-lg="3" size-md="4" size-xl="2">
       <ion-card>
-        <ion-card-title
-          >Delivered
-          <span class="order-number delivered">{{total_delivered_today_order}}</span></ion-card-title
-        >
+        <ion-card-title>Pending
+          <span class="order-number pending">{{pending_order}}</span></ion-card-title>
       </ion-card>
     </ion-col>
     <ion-col size-sm="12" size-lg="3" size-md="4" size-xl="2">
       <ion-card>
-        <ion-card-title
-          >Pending
-          <span class="order-number pending">{{pending_order}}</span></ion-card-title
-        >
+        <ion-card-title>Canceled <span class="order-number cancel">{{cancel_order}}</span></ion-card-title>
       </ion-card>
     </ion-col>
     <ion-col size-sm="12" size-lg="3" size-md="4" size-xl="2">
       <ion-card>
-        <ion-card-title
-          >Canceled <span class="order-number cancel">{{cancel_order}}</span></ion-card-title
-        >
-      </ion-card>
-    </ion-col>
-    <ion-col size-sm="12" size-lg="3" size-md="4" size-xl="2">
-      <ion-card>
-        <ion-card-title
-          >Return <span class="order-number return">{{return_order}}</span></ion-card-title
-        >
+        <ion-card-title>Return <span class="order-number return">{{return_order}}</span></ion-card-title>
       </ion-card>
     </ion-col>
   </ion-row>
   <!--TOP FLAGS-->
   <ion-row>
-    <ion-col
-      size-sm="12"
-      size-lg="6"
-      size-md="6"
-      size-xl="6"
-      *ngFor="let item of carts"
-    >
-    <ion-card>
-      <ion-card-header>
-        <div class="left">
-          Order ID: <span>{{ item.order_number }}</span>
-        </div>
+    <ion-col size-sm="12" size-lg="6" size-md="6" size-xl="6" *ngFor="let item of carts">
+      <ion-card>
+        <ion-card-header>
+          <div class="left">
+            Order ID: <span>{{ item.order_number }}</span>
+          </div>
 
-        <div class="date">
-          <ion-card-subtitle>Order Date : {{this.datePipe.transform(item.order_date, 'dd.MM.yy    HH:mm')}}</ion-card-subtitle>
-        </div>
+          <div class="date">
+            <ion-card-subtitle>Order Date : {{this.datePipe.transform(item.order_date, 'dd.MM.yy
+              HH:mm')}}</ion-card-subtitle>
+          </div>
 
 
-        <div class="right">
-          <ion-button fill="outline" (click)="isEdit = !isEdit">
-            {{ isEdit ? 'Cancel' : 'Modify Order' }}
-          </ion-button>
-        </div>
+          <div class="right">
+            <ion-button fill="outline" (click)="isEdit = !isEdit">
+              {{ isEdit ? 'Cancel' : 'Modify Order' }}
+            </ion-button>
+          </div>
 
-       
-      </ion-card-header>
-    
-      <ion-card-content>
-        <ion-grid [ngClass]="{ 'edit-mode': isEdit }">
-          <ion-row>
-            <ion-col size="6">
-              <ion-label>ITEM ID:</ion-label>
-              <span *ngIf="!isEdit">{{ item.item_id }}</span>
-            </ion-col>
-    
-            <ion-col size="6">
-              <ion-label>Category:</ion-label>
-              <ion-input  class="custom" *ngIf="isEdit" [(ngModel)]="item.category"></ion-input>
-              <span *ngIf="!isEdit">{{ item.category }}</span>
-            </ion-col>
-    
-            <ion-col size="6">
-              <ion-label>Sub Category:</ion-label>
-              <ion-input  class="custom" *ngIf="isEdit" [(ngModel)]="item.sub_category"></ion-input>
-              <span *ngIf="!isEdit">{{ item.sub_category }}</span>
-            </ion-col>
-    
-            <ion-col size="6">
-              <ion-label>QUANTITY:</ion-label>
-              <ion-input  class="custom" type="number" *ngIf="isEdit" [(ngModel)]="item.quantity"></ion-input>
-              <span *ngIf="!isEdit">{{ item.quantity }}</span>
-            </ion-col>
-    
-            <ion-col size="6">
-              <ion-label>COLOR:</ion-label>
-              <ion-input  class="custom" *ngIf="isEdit" [(ngModel)]="item.color"></ion-input>
-              <span *ngIf="!isEdit">{{ item.color }}</span>
-            </ion-col>
-    
-            <ion-col size="6">
-              <ion-label>SIZE:</ion-label>
-              <ion-input  class="custom" *ngIf="isEdit" [(ngModel)]="item.size"></ion-input>
-              <span *ngIf="!isEdit">{{ item.size }}</span>
-            </ion-col>
-    
-            <ion-col size="6">
-              <ion-label>PRICE:</ion-label>
-              <span *ngIf="!isEdit">{{ item.total_price }} {{item.currency}}</span>
-            </ion-col>
 
-            <ion-col size="6">
-              <ion-label style="color: black; font-weight: bold;">Paid:</ion-label>
-              <span *ngIf="!isEdit" style="color:blue">{{ item.total_price }} {{item.currency}}</span>
-            </ion-col>
-    
-            
-    
-            <ion-col size="6">
-              <ion-label>DISCOUNT:</ion-label>
-              <span *ngIf="!isEdit">{{ item.discount }}</span>
-            </ion-col>
-            
+        </ion-card-header>
 
-            <ion-col size="12">
-              <ion-item button (click)="toggleSellerDetails()" lines="none" class="expand-header">
-                <ion-label>
-                  <strong>Seller Info</strong>
-                </ion-label>
-                <ion-icon [name]="showSellerDetails ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
-              </ion-item>
-            
-              <div *ngIf="showSellerDetails" class="expand-content">
-                <ion-label class="field-group">
-                  Phone: <span>+{{ item.seller_info.primaryPhone }}</span>
-                </ion-label>
-                <ion-label class="field-group">
-                  Country: <span>{{ item.seller_info.countryName }}</span>
-                </ion-label>
-              </div>
-            </ion-col>
-            <ion-col size="12">
-              <ion-item button (click)="toggleBuyerDetails()" lines="none" class="expand-header">
-                <ion-label>
-                  <strong>Buyer Info</strong>
-                </ion-label>
-                <ion-icon [name]="showBuyerDetails ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
-              </ion-item>
-            
-              <div *ngIf="showBuyerDetails" class="expand-content">
-                <ion-label class="field-group">
-                  Phone: <span>+{{ item.buyer_info.primaryPhone }}</span>
-                </ion-label>
-                <ion-label class="field-group">
-                  Country: <span>{{ item.buyer_info.countryName }}</span>
-                </ion-label>
-              </div>
-            </ion-col>
-            <ion-col size="6">
-              <ion-label>Payment By:</ion-label>
-              <ion-input  class="custom" *ngIf="isEdit" [(ngModel)]="item.payment_mode.en"></ion-input>
-              <span *ngIf="!isEdit">{{ item.payment_mode.en }}</span>
-            </ion-col>
-    
-            <ion-col size="6">
-              <div class="field-group">
-                <ion-label>Delivery Status:  <span *ngIf="!isEdit">{{ item.delivery_status }}</span></ion-label>
-                <ion-select *ngIf="isEdit" [(ngModel)]="item.delivery_status">
-                  <ion-select-option value="Pending">Pending</ion-select-option>
-                  <ion-select-option value="Shipped">Shipped</ion-select-option>
-                  <ion-select-option value="Rejected">Rejected</ion-select-option>
-                </ion-select>
-               
-              </div>
-            </ion-col>
-    
-            <ion-col size="6">
-              <div class="field-group">
-                <ion-label>Delivered By: <span *ngIf="!isEdit">{{ item.deliver_by === null ? "NOT YET" : item.deliver_by}}</span></ion-label>
-                <ion-select *ngIf="isEdit" [(ngModel)]="item.deliver_by">
-                  <ion-select-option value="PK POST">PK POST</ion-select-option>
-                  <ion-select-option value="EVRI">EVRI</ion-select-option>
-                  <ion-select-option value="AMAZON">AMAZON</ion-select-option>
-                </ion-select>
-                
-              </div>
-            </ion-col>
-    
-            <ion-col size="6">
-              <ion-label>Delivery Date: <span *ngIf="!isEdit">{{ item.delivery_date === null ? "NOT YET" : item.delivery_date}}</span></ion-label>
-              <ion-input  class="custom" *ngIf="isEdit" type="date" [(ngModel)]="item.delivery_date"></ion-input>
-              
-            </ion-col>
-    
-           
+        <ion-card-content>
+          <ion-grid [ngClass]="{ 'edit-mode': isEdit }">
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>ITEM ID:</ion-label>
+                <span *ngIf="!isEdit">{{ item.item_id }}</span>
+              </ion-col>
 
-            <ion-col size="8">
-              <ion-label>Verified By:</ion-label>
-              <ion-input  class="custom" *ngIf="isEdit" [(ngModel)]="item.order_verified_by.emp_id"></ion-input>
-              <span *ngIf="!isEdit && item.order_verified_by != null ">{{ item.order_verified_by.name }} | {{ item.order_verified_by.emp_id }} on -  {{ item.order_verified_on}}</span>
-            </ion-col>
+              <ion-col size="6">
+                <ion-label>Category:</ion-label>
+                <ion-input class="custom" *ngIf="isEdit" [(ngModel)]="item.category"></ion-input>
+                <span *ngIf="!isEdit">{{ item.category }}</span>
+              </ion-col>
 
-            <ion-col size="4">
-              <div class="container-order-verify">
-              <ion-label>Verified:</ion-label>
-              <ion-checkbox mode="ios" *ngIf="isEdit"></ion-checkbox>
-              <span *ngIf="!isEdit">{{item.order_verified === true ? "Yes" : "No"}} </span>
-            </div>
-            </ion-col>
+              <ion-col size="6">
+                <ion-label>Sub Category:</ion-label>
+                <ion-input class="custom" *ngIf="isEdit" [(ngModel)]="item.sub_category"></ion-input>
+                <span *ngIf="!isEdit">{{ item.sub_category }}</span>
+              </ion-col>
 
-          
+              <ion-col size="6">
+                <ion-label>QUANTITY:</ion-label>
+                <ion-input class="custom" type="number" *ngIf="isEdit" [(ngModel)]="item.quantity"></ion-input>
+                <span *ngIf="!isEdit">{{ item.quantity }}</span>
+              </ion-col>
 
-            <ion-col size="6">
-              <ion-button fill="outline">View Item</ion-button>
-            </ion-col>
+              <ion-col size="6">
+                <ion-label>COLOR:</ion-label>
+                <ion-input class="custom" *ngIf="isEdit" [(ngModel)]="item.color"></ion-input>
+                <span *ngIf="!isEdit">{{ item.color }}</span>
+              </ion-col>
 
-            <ion-col size="12" *ngIf="isEdit">
-              <ion-button expand="full" color="primary" (click)="updateOrder()">SAVE CHANGES</ion-button>
-            </ion-col>
-    
-            <ion-col size="12">
-              <ion-button color="danger" expand="full" (click)="deleteOrder()">Reject Order</ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
-    
+              <ion-col size="6">
+                <ion-label>SIZE:</ion-label>
+                <ion-input class="custom" *ngIf="isEdit" [(ngModel)]="item.size"></ion-input>
+                <span *ngIf="!isEdit">{{ item.size }}</span>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-label>PRICE:</ion-label>
+                <span *ngIf="!isEdit">{{ item.total_price }} {{item.currency}}</span>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-label style="color: black; font-weight: bold;">Paid:</ion-label>
+                <span *ngIf="!isEdit" style="color:blue">{{ item.total_price }} {{item.currency}}</span>
+              </ion-col>
+
+
+
+              <ion-col size="6">
+                <ion-label>DISCOUNT:</ion-label>
+                <span *ngIf="!isEdit">{{ item.discount }}</span>
+              </ion-col>
+
+
+              <ion-col size="12">
+                <ion-item button (click)="toggleSellerDetails()" lines="none" class="expand-header">
+                  <ion-label>
+                    <strong>Seller Info</strong>
+                  </ion-label>
+                  <ion-icon [name]="showSellerDetails ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+                </ion-item>
+
+                <div *ngIf="showSellerDetails" class="expand-content">
+                  <ion-label class="field-group">
+                    Phone: <span>+{{ item.seller_info.primaryPhone }}</span>
+                  </ion-label>
+                  <ion-label class="field-group">
+                    Country: <span>{{ item.seller_info.countryName }}</span>
+                  </ion-label>
+                </div>
+              </ion-col>
+              <ion-col size="12">
+                <ion-item button (click)="toggleBuyerDetails()" lines="none" class="expand-header">
+                  <ion-label>
+                    <strong>Buyer Info</strong>
+                  </ion-label>
+                  <ion-icon [name]="showBuyerDetails ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+                </ion-item>
+
+                <div *ngIf="showBuyerDetails" class="expand-content">
+                  <ion-label class="field-group">
+                    Phone: <span>+{{ item.buyer_info.primaryPhone }}</span>
+                  </ion-label>
+                  <ion-label class="field-group">
+                    Country: <span>{{ item.buyer_info.countryName }}</span>
+                  </ion-label>
+                </div>
+              </ion-col>
+              <ion-col size="6">
+                <ion-label>Payment By:</ion-label>
+                <ion-input class="custom" *ngIf="isEdit" [(ngModel)]="item.payment_mode.en"></ion-input>
+                <span *ngIf="!isEdit">{{ item.payment_mode.en }}</span>
+              </ion-col>
+
+              <ion-col size="6">
+                <div class="field-group">
+                  <ion-label>Delivery Status: <span *ngIf="!isEdit">{{ item.delivery_status }}</span></ion-label>
+                  <ion-select *ngIf="isEdit" [(ngModel)]="item.delivery_status">
+                    <ion-select-option value="Pending">Pending</ion-select-option>
+                    <ion-select-option value="Shipped">Shipped</ion-select-option>
+                    <ion-select-option value="Rejected">Rejected</ion-select-option>
+                  </ion-select>
+
+                </div>
+              </ion-col>
+
+              <ion-col size="6">
+                <div class="field-group">
+                  <ion-label>Delivered By: <span *ngIf="!isEdit">{{ item.deliver_by === null ? "NOT YET" :
+                      item.deliver_by}}</span></ion-label>
+                  <ion-select *ngIf="isEdit" [(ngModel)]="item.deliver_by">
+                    <ion-select-option value="PK POST">PK POST</ion-select-option>
+                    <ion-select-option value="EVRI">EVRI</ion-select-option>
+                    <ion-select-option value="AMAZON">AMAZON</ion-select-option>
+                  </ion-select>
+
+                </div>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-label>Delivery Date: <span *ngIf="!isEdit">{{ item.delivery_date === null ? "NOT YET" :
+                    item.delivery_date}}</span></ion-label>
+                <ion-input class="custom" *ngIf="isEdit" type="date" [(ngModel)]="item.delivery_date"></ion-input>
+
+              </ion-col>
+
+
+
+              <ion-col size="8">
+                <ion-label>Verified By:</ion-label>
+                <ion-input class="custom" *ngIf="isEdit" [(ngModel)]="item.order_verified_by.emp_id"></ion-input>
+                <span *ngIf="!isEdit && item.order_verified_by != null ">{{ item.order_verified_by.name }} | {{
+                  item.order_verified_by.emp_id }} on - {{ item.order_verified_on}}</span>
+              </ion-col>
+
+              <ion-col size="4">
+                <div class="container-order-verify">
+                  <ion-label>Verified:</ion-label>
+                  <ion-checkbox mode="ios" *ngIf="isEdit"></ion-checkbox>
+                  <span *ngIf="!isEdit">{{item.order_verified === true ? "Yes" : "No"}} </span>
+                </div>
+              </ion-col>
+
+
+
+              <ion-col size="6">
+                <ion-button fill="outline">View Item</ion-button>
+              </ion-col>
+
+              <ion-col size="12" *ngIf="isEdit">
+                <ion-button expand="full" color="primary" (click)="updateOrder()">SAVE CHANGES</ion-button>
+              </ion-col>
+
+              <ion-col size="12">
+                <ion-button color="danger" expand="full" (click)="deleteOrder()">Reject Order</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+
     </ion-col>
   </ion-row>
 </ion-grid>

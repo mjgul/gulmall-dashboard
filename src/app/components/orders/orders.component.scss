@@ -205,3 +205,69 @@ ion-input.custom {
   --padding-start: 10px;
   --padding-top: 10px;
 }
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 244 247 / var(--tw-bg-opacity, 1));
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(208 213 221 / var(--tw-border-opacity, 1));
+}
+
+.flex {
+  display: flex
+;
+}
+
+.px-xl {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.box-border {
+  box-sizing: border-box;
+}
+
+.justify-between {
+  
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(102 112 133 / var(--tw-text-opacity, 1));
+}
+
+.leading-6 {
+  line-height: 24px;
+}
+
+.text-lg {
+  font-size: 1rem;
+}
+
+.py-lg {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+}
+
+.gap-xs {
+  gap: .25rem;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+li:hover{
+  color:#1c86ee
+}

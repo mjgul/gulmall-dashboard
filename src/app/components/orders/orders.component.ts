@@ -14,11 +14,11 @@ import { DatePipe } from '@angular/common';
   imports:[IonicModule,CommonModule,FormsModule]
 })
 export class OrdersComponent implements OnInit {
-  today_order:string  = null;
-  total_delivered_today_order:string = null;
+  today_order:string  = "0";
+  total_delivered_order:string = "0";
   pending_order:string = null;
-  cancel_order:string = null;
-  return_order:string= null;
+  cancel_order:string = "0";
+  return_order:string= "0";
   isEdit = false;
   showSellerDetails = false;
   showBuyerDetails = false;
@@ -42,6 +42,8 @@ export class OrdersComponent implements OnInit {
 
     (await this.orders.getAllCarts()).subscribe((res:any)=>{
       this.carts  = res.orders;
+      this.pending_order = res.summary.pending_orders;
+
     })
   }
 
